@@ -1,0 +1,2318 @@
+{% extends 'header.html' %}
+{% load user_agents %}
+{% block header %}
+{% load static %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #e8f0fe;
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .contact-wrap {
+    background-color: #D1CF0A;
+    color: black;
+    width: 80%;
+    height: auto;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .contact-in {
+    padding: 40px 30px;
+  }
+
+  .contact-in:nth-child(1) {
+    flex: 30%;
+    color: #fff;
+  }
+
+  .contact-in:nth-child(2) {
+    flex: 45%;
+    background: linear-gradient(#333);
+  }
+
+  .contact-in:nth-child(3) {
+    flex: 25%;
+    padding: 0;
+  }
+
+  .contact-in h1 {
+    font-size: 24px;
+    color: black;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  .contact-in h2 {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 15px;
+  }
+
+  .contact-in h2 i {
+    font-size: 16px;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    background: #f5f5f5;
+    color: #000;
+    border-radius: 50px;
+    line-height: 40px;
+    text-align: center;
+  }
+
+  .contact-in p {
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .contact-in ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  .contact-in ul li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 5px;
+    margin-top: 5px;
+  }
+
+  .contact-in ul li a {
+    display: block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    background: #fff;
+    border-radius: 50px;
+  }
+
+  .contact-in ul li a i {
+    font-size: 14px;
+    line-height: 30px;
+    color: #000;
+  }
+
+  .contact-in form {
+    width: 100%;
+    height: auto;
+  }
+
+  .contact-in-input {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    border: 1px solid #fff;
+    outline: none;
+    padding-left: 5px;
+    background: transparent;
+    color: black;
+    font-size: 12px;
+    font-weight: 300;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .contact-in-input::placeholder {
+    color: black;
+  }
+
+  .contact-in-textarea {
+    width: 100%;
+    height: 140px;
+    margin-bottom: 20px;
+    border: 1px solid #fff;
+    outline: none;
+    padding-top: 5px;
+    padding-left: 5px;
+    background: transparent;
+    color: black;
+    font-size: 12px;
+    font-weight: 300;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .contact-in-textarea::placeholder {
+    color: black;
+  }
+
+  .contact-in-btn {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #fff;
+    outline: none;
+    background-color:#D1CF0A;
+    color: white;
+    font-size: 12px;
+    font-weight: 300;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.contact-in-btn:hover {
+    background-color: white; 
+    color: black;           
+}
+
+
+  .contact-in iframe {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media only screen and (max-width: 480px) {
+    .contact-in:nth-child(1) {
+      flex: 50%;
+    }
+
+    .contact-in:nth-child(2) {
+      flex: 50%;
+    }
+
+    .contact-in:nth-child(3) {
+      flex: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 360px) {
+    .contact-in:nth-child(1) {
+      flex: 50%;
+    }
+
+    .contact-in:nth-child(2) {
+      flex: 50%;
+    }
+
+    .contact-in:nth-child(3) {
+      flex: 100%;
+    }
+  }
+
+  .h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .here {
+    width: 80%;
+    height: auto;
+    margin: auto;
+  }
+
+  .contact-in-input:focus {
+    color: #000;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding-right: 30px;
+    background-position: right 10px center;
+    background-color: white;
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .contact-in-input:focus, .contact-in-input:active, .contact-in-input:hover {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    background-color: white;
+    color: black; 
+    font-weight: bold; 
+    cursor: pointer;
+    transition: all 0.3s ease; 
+}
+
+
+.multiselect-dropdown:hover{
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    background-color: white;
+    color: black; 
+    font-weight: bold; 
+    cursor: pointer;
+    transition: all 0.3s ease; 
+}
+
+.contact-in-input:valid {
+    color: black; 
+    font-weight: bold; 
+}
+
+
+  .subscription-inner-custom {
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+  }
+
+  /* Subscription Section */
+  .custom-subscription-title {
+    font-size: 36px;
+    color: #333;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .custom-subscription-subtitle {
+    font-size: 22px;
+    color: #555;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .custom-subscription-text {
+    font-size: 18px;
+    color: #777;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  /* Plan Section */
+  .custom-plan-container {
+    /* background-color: #F5F5F5; */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+
+  .custom-plan-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 10px;
+  }
+
+  .custom-plan-description {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  /* Call-to-Action Section */
+  .custom-cta-container {
+    /* background-color: #e0e0e0; */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .custom-cta-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 10px;
+  }
+
+  .custom-cta-text {
+    font-size: 18px;
+    color: #444;
+  }
+
+  /* Professional Section */
+  .custom-profession-title {
+    font-size: 26px;
+    font-weight: 600;
+    color: #444;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .custom-profession-text {
+    font-size: 18px;
+    color: #555;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  /* Explore Section */
+  .custom-explore-title {
+    font-size: 26px;
+    font-weight: 600;
+    color: #444;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .custom-explore-text {
+    font-size: 18px;
+    color: #555;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  /* How it Works Section */
+  .custom-how-it-works-container {
+    padding: 20px;
+    /* background-color: #FFF4E6; */
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+
+  .custom-how-it-works-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 10px;
+  }
+
+  .custom-how-it-works-text {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* Why Join Section */
+  .custom-why-join-container {
+    padding: 20px;
+    /* background-color: #F0F8FF; */
+    border-radius: 10px;
+  }
+
+  .custom-why-join-title {
+    font-size: 26px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .custom-why-join-text, .custom-benefits-text {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .custom-benefits-text strong {
+    color: #444;
+  }
+
+
+
+  .multiselect-container {
+        position: relative;
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .multiselect-dropdown {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid white;
+        /* border-radius: 5px; */
+        background-color: #D1CF0A;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .dropdown-arrow {
+        font-size: 16px;
+    }
+
+    .dropdown-list {
+        display: none;
+        position: absolute;
+        width: 100%;
+        max-height: 250px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow-y: auto;
+        z-index: 1;
+        padding: 10px;
+    }
+
+    .dropdown-list label {
+        display: block;
+        padding: 8px;
+        cursor: pointer;
+    }
+
+    .dropdown-list label:hover {
+        background-color: #f0f0f0;
+    }
+
+    .dropdown-list input {
+        margin-right: 10px;
+    }
+
+    .dropdown-list::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .dropdown-list::-webkit-scrollbar-thumb {
+        background-color: #007bff;
+        border-radius: 5px;
+    }
+
+    .dropdown-list::-webkit-scrollbar-track {
+        background-color: #f9f9f9;
+    }
+
+
+
+    @media only screen and (max-width: 480px) {
+    .contact-wrap {
+      width: 90%;
+    }
+
+    .contact-in:nth-child(1),
+    .contact-in:nth-child(2),
+    .contact-in:nth-child(3) {
+      flex: 100%; /* Make elements stack */
+    }
+
+    .contact-in {
+      padding: 20px 15px; /* padding for smaller screens */
+    }
+
+    h1 {
+      font-size: 20px; /* Smaller font size */
+    }
+  }
+
+  /* For screens smaller than 360px */
+  @media only screen and (max-width: 360px) {
+    .contact-wrap {
+      width: 95%;
+    }
+
+    .contact-in-input {
+      font-size: 14px;
+    }
+  }
+
+
+  /* General styles for profile container */
+.professional-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;  
+    padding: 20px;
+}
+
+/* Individual professional card style */
+.professional {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    width: 200px;  
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.professional:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Profile image style */
+.professional img {
+    width: 100%;
+    height: 180px;  
+    object-fit: cover;
+    border-bottom: 4px solid #f0f0f0;
+}
+
+/* Profile name and profession */
+.professional h3 {
+    font-size: 20px;  
+    margin: 10px 0;
+    color: black;
+    font-weight: 600;
+}
+
+/* Profession text */
+.professional p {
+    font-size: 15px;  
+    color: black;
+    margin: 8px 15px;
+    height: 30px;  
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* View Profile button */
+.professional a {
+    display: inline-block;
+    margin: 5px ;
+    padding: 8px 16px;  
+    background-color: #d1cf0a;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 15px;  
+    transition: background-color 0.3s;
+}
+
+.professional a:hover {
+    background-color: #343a40;
+}
+
+/* Media query for mobile screens */
+@media (max-width: 768px) {
+    .professional:nth-child(n+6) {
+        display: none;  
+    }
+}
+</style>
+
+
+<style>
+  /* General styles for carousel container */
+  .carousel-container {
+    width: 440px;
+    overflow: hidden;
+    position: relative;
+    margin: auto;
+        }
+
+/* Carousel track to hold profiles */
+.carousel-track {
+     display: flex;
+     transition: transform 0.5s ease-in-out;
+}
+
+/* Individual professional card style */
+.professional {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    width: 200px;  
+    margin: 0 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.professional:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Profile image style */
+.professional img {
+    width: 100%;
+    height: 180px;  
+    object-fit: cover;
+    border-bottom: 4px solid #f0f0f0;
+}
+
+/* Profile name and profession */
+.professional h3 {
+    font-size: 20px;  
+    margin: 10px 0;
+    color: black;
+    font-weight: 600;
+}
+
+/* Profession text */
+.professional p {
+    font-size: 15px;  
+    color: black;
+    margin: 8px 15px;
+    height: 30px;  
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* View Profile button */
+.professional a {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 16px;  
+    background-color: #d1cf0a;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 15px;  
+    transition: background-color 0.3s;
+}
+
+.professional a:hover {
+    background-color: #343a40;
+}
+
+/* Previous and Next buttons */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev {
+left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+
+
+/* Style for captcha container */
+.captcha-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    padding: 10px;
+}
+
+/* PC view */
+@media only screen and (min-width: 768px) {
+    .captcha-container {
+        width: 100%;
+        max-width: 400px; 
+    }
+
+    .g-recaptcha {
+        transform: scale(1);
+        transform-origin: 0 0;
+    }
+}
+
+/* Mobile view */
+@media only screen and (max-width: 768px) {
+    .captcha-container {
+        width: 100%;
+        padding: 0;
+    }
+
+    .g-recaptcha {
+        transform: scale(0.85); 
+        transform-origin: 0 0;
+    }
+}
+
+
+/* Shadow and hover effects for boxes */
+.custom-box {
+    transition: all 0.3s ease-in-out;
+    opacity: 0.9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .custom-box:hover {
+    opacity: 1;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+  }
+
+
+
+  .multiselect-container:hover {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+	cursor: pointer;
+}
+
+
+/* Style for the form group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+/* Align the labels to the left */
+.agreement-label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Style the checkboxes */
+.agreement-label input[type="checkbox"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect on checkboxes */
+.agreement-label input[type="checkbox"]:hover {
+    border: 2px solid #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Styling the links */
+.agreement-label a {
+    color: #007BFF;
+    text-decoration: underline;
+}
+
+.agreement-label a:hover {
+    color: #0056b3; 
+}
+
+/* Mobile adjustments */
+@media only screen and (max-width: 480px) {
+    .agreement-label {
+        font-size: 12px;
+    }
+}
+
+</style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <link href="./css/dem.css" rel="stylesheet"> -->
+<!-- <link href="{% static 'main/css/style.css' %}" rel="stylesheet"> -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<link href="{% static 'main/css/intlTelInput.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+
+<title>Contact Us</title>
+
+<div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+  <h1>Join Peza Job Today!</h1>
+  <p style="color: black;">Get discovered locally and internationally by businesses, hiring managers, collaborators, and other professionals. Whether you're a job seeker, freelancer, entrepreneur, or industry expert, create a profile to showcase your skills and grow your opportunities.</p>
+  <br>
+  <p>Join Peza Job today and connect with top employers, clients, and industry professionals:</p>
+</div>
+
+
+<br>
+
+
+<div class="contact-wrap" style="background-color: #D1CF0A; padding: 40px;">
+  <div class="contact-in">
+    <h1 style="color: black; text-align: center;" class="custom-subscription-title">Subscription Options</h1>
+    <h2 style="color: black; text-align: center;" class="custom-subscription-subtitle">Choose a subscription plan that suits your professional journey.</h2>
+    <p class="custom-subscription-text">Unlock features that will help you stand out and grow your professional network.</p>
+<hr>
+
+    <div class="custom-plan-container">
+      <h2 class="custom-plan-title">Basic Plan – K10/month</h2>
+      <p class="custom-plan-description">Affordable and flexible for those who want to pay monthly.</p>
+      <hr>
+      <br>
+
+
+      <h2 class="custom-plan-title">6-Month Plan – K60</h2>
+      <p class="custom-plan-description">Save more with a 6-month subscription and enjoy uninterrupted access.</p>
+      <hr>
+      <br>
+
+      <h2 class="custom-plan-title">Annual Plan – K120</h2>
+      <p class="custom-plan-description">Maximize your savings with our best value plan, giving you full access for a year at the lowest rate.</p>
+    </div>
+    <hr>
+    <br>
+
+
+
+
+    <div class="custom-cta-container">
+      <h2 style="color: black; text-align: center;" class="custom-cta-title">Join today and choose the plan that works best for you.</h2>
+      <p class="custom-cta-text">All plans include access to the Peza Job platform, profile visibility to local and international companies, and networking opportunities with other professionals.</p>
+    </div>
+
+
+
+    <div class="custom-profession-container">
+      <h2 style="color: black; text-align: center;" class="custom-profession-title">Meet Some of Our Professionals</h2>
+      <p class="custom-profession-text">Get inspired by the professionals who've joined Peza Job. Check out their profiles and see what makes them stand out in their fields.</p>
+    </div>
+
+
+
+    <div class="carousel-container">
+      <div class="carousel-track">
+          <div class="professional">
+              <a href="#"><img src="https://via.placeholder.com/200" alt="User 1"></a>
+              <h3>User 1</h3>
+              <p>Software Engineer</p>
+              <a href="#">View Profile</a>
+          </div>
+          <div class="professional">
+              <a href="#"><img src="https://via.placeholder.com/200" alt="User 2"></a>
+              <h3>User 2</h3>
+              <p>Data Scientist</p>
+              <a href="#">View Profile</a>
+          </div>
+          
+      </div>
+  
+      <button class="prev" onclick="moveCarousel(-1)">&#10094;</button>
+      <button class="next" onclick="moveCarousel(1)">&#10095;</button>
+  </div>
+  <br>
+
+    <h2 style="color: black; text-align: center;" class="custom-explore-title">Explore More Professionals</h2>
+    <p class="custom-explore-text">Learn more about professionals from various industries and discover their unique skills and talents on the Peza Job platform.</p>
+
+    <div class="custom-how-it-works-container">
+      <h2 style="color: black; text-align: center;" class="custom-how-it-works-title">How Peza Job Works for Professionals</h2>
+      <p class="custom-how-it-works-text">
+        <strong style="color: black;">1. Create Your Profile:</strong> Highlight your skills, experience, and expertise by setting up your profile.<br>
+        <strong style="color: black;">2. Get Discovered:</strong> Employers and collaborators will find you when searching for professionals in your field.<br>
+        <strong style="color: black;">3. Connect with Opportunities:</strong> Apply for jobs, pitch for projects, and collaborate with others who need your services.
+      </p>
+    </div>
+
+    <div class="custom-why-join-container">
+      <h2 style="color: black; text-align: center;" class="custom-why-join-title">Why Join Peza Job as a Professional?</h2>
+      <p class="custom-why-join-text">Joining Peza Job opens up opportunities for professionals across various industries. Whether you're seeking new job prospects, looking to collaborate on projects, or aiming to grow your personal brand, Peza Job offers a platform designed to help you succeed.</p>
+
+      <p class="custom-benefits-text">
+        <strong style="color: black;">1. Get Discovered by Top Companies:</strong> Showcase your expertise to local and international companies actively searching for professionals like you. Increase your visibility and connect with hiring managers and potential business partners.<br>
+        <strong style="color: black;">2. Access to Job Opportunities:</strong> Stay updated on the latest job openings and career opportunities in your field. Whether you're looking for a full-time position or freelance gigs, Peza Job connects you with the right opportunities.<br>
+        <strong style="color: black;">3. Expand Your Professional Network:</strong> Build relationships with like-minded professionals, industry experts, and business leaders. Strengthen your network and collaborate on new ventures or projects.<br>
+        <strong style="color: black;">4. Showcase Your Skills and Experience:</strong> Highlight your skills, expertise, and achievements on your profile. Make a lasting impression on potential employers and collaborators by demonstrating your value.<br>
+        <strong style="color: black;">5. Opportunities Beyond Employment:</strong> Whether you’re an entrepreneur, freelancer, coach, or creative, Peza Job is a platform to promote your business or services, find new clients, and grow your professional ventures.<br>
+        <strong style="color: black;">6. Global Exposure:</strong> With a platform that reaches beyond Zambia, get the chance to be discovered internationally and take your career to the next level.
+      </p>
+    </div>
+  </div>
+
+  <!-- Wrap the input fields and submit button inside a form -->
+  <div class="contact-in">
+    <h1 style="color: black; text-align: center;">Professional Registration</h1>
+    <form action="" method="post">
+      
+            <small class="form-label text-secondary" >Full Name</small>
+
+            <input type="text" placeholder="Enter your full legal name" class="contact-in-input" name="full_name">
+            <small class="form-label text-secondary" >Email Address</small>
+
+            <input type="text" placeholder="Your primary email for communication" class="contact-in-input" name="email">
+            <small class="form-label text-secondary" >Country</small>
+            
+
+      <small class="form-label text-secondary" >Phone Number</small>
+      <input type="tel" id="phonex" placeholder="Optional but useful for networking" class="contact-in-input" name="phone_number">
+
+
+      <small class="form-label text-secondary" >Profile Picture</small>
+      <input type="file" id="profilePic" class="contact-in-input" name="profile_picture" accept="image/*">
+
+
+
+      <!-- Professional Title -->
+<small class="form-label text-secondary" >Your Profession</small>
+<div class="multiselect-container">
+    <div class="multiselect-dropdown" onclick="toggleDropdown('professionDropdown')">
+        <span style="color: black; font-weight: bold;" id="selectedProfessional">Select your Professionals</span>
+        <div class="dropdown-arrow">&#9662;</div>
+    </div>
+    <div id="professionDropdown" class="dropdown-list">
+        <!-- Agriculture -->
+<h3 style="text-align: center;">Agriculture</h3>
+<label><input type="checkbox" value="Agronomist"> Agronomist</label>
+<label><input type="checkbox" value="Farm Manager"> Farm Manager</label>
+<label><input type="checkbox" value="Agricultural Engineer"> Agricultural Engineer</label>
+<label><input type="checkbox" value="Livestock Manager"> Livestock Manager</label>
+<label><input type="checkbox" value="Horticulturist"> Horticulturist</label>
+<label><input type="checkbox" value="Fishery Manager"> Fishery Manager</label>
+<label><input type="checkbox" value="Forestry Technician"> Forestry Technician</label>
+<label><input type="checkbox" value="Agribusiness Specialist"> Agribusiness Specialist</label>
+<label><input type="checkbox" value="Soil Scientist"> Soil Scientist</label>
+<label><input type="checkbox" value="Crop Scientist"> Crop Scientist</label>
+<label><input type="checkbox" value="Agricultural Economist"> Agricultural Economist</label>
+<label><input type="checkbox" value="Poultry Farmer"> Poultry Farmer</label>
+<label><input type="checkbox" value="Animal Nutritionist"> Animal Nutritionist</label>
+<label><input type="checkbox" value="Dairy Technologist"> Dairy Technologist</label>
+<label><input type="checkbox" value="Veterinary Technician"> Veterinary Technician</label>
+<label><input type="checkbox" value="Livestock Consultant"> Livestock Consultant</label>
+<label><input type="checkbox" value="Agricultural Sales Representative"> Agricultural Sales Representative</label>
+<label><input type="checkbox" value="Pet Groomer"> Pet Groomer</label>
+<label><input type="checkbox" value="Animal Trainer"> Animal Trainer</label>
+<label><input type="checkbox" value="Animal Shelter Manager"> Animal Shelter Manager</label>
+<br>
+
+<!-- Arts and Entertainment -->
+<h3 style="text-align: center;">Arts and Entertainment</h3>
+<label><input type="checkbox" value="Actor/Actress"> Actor/Actress</label>
+<label><input type="checkbox" value="Director (Film/Theatre)"> Director (Film/Theatre)</label>
+<label><input type="checkbox" value="Musician (General)"> Musician (General)</label>
+<label><input type="checkbox" value="Composer"> Composer</label>
+<label><input type="checkbox" value="Sound Engineer"> Sound Engineer</label>
+<label><input type="checkbox" value="Choreographer"> Choreographer</label>
+<label><input type="checkbox" value="Dancer"> Dancer</label>
+<label><input type="checkbox" value="Screenwriter"> Screenwriter</label>
+<label><input type="checkbox" value="Set Designer"> Set Designer</label>
+<label><input type="checkbox" value="Cinematographer"> Cinematographer</label>
+<label><input type="checkbox" value="Voice Actor"> Voice Actor</label>
+<label><input type="checkbox" value="Costume Designer"> Costume Designer</label>
+<label><input type="checkbox" value="Makeup Artist (Film/TV)"> Makeup Artist (Film/TV)</label>
+<label><input type="checkbox" value="Lighting Technician"> Lighting Technician</label>
+<label><input type="checkbox" value="Art Curator"> Art Curator</label>
+<br>
+
+<!-- Beauty and Wellness -->
+<h3 style="text-align: center;">Beauty and Wellness</h3>
+<label><input type="checkbox" value="Hair Stylist"> Hair Stylist</label>
+<label><input type="checkbox" value="Nail Technician"> Nail Technician</label>
+<label><input type="checkbox" value="Barber"> Barber</label>
+<label><input type="checkbox" value="Esthetician"> Esthetician</label>
+<label><input type="checkbox" value="Spa Manager"> Spa Manager</label>
+<label><input type="checkbox" value="Tattoo Artist"> Tattoo Artist</label>
+<br>
+
+<!-- Construction and Real Estate -->
+<h3 style="text-align: center;">Construction and Real Estate</h3>
+<label><input type="checkbox" value="Civil Engineer"> Civil Engineer</label>
+<label><input type="checkbox" value="Construction Manager"> Construction Manager</label>
+<label><input type="checkbox" value="Quantity Surveyor"> Quantity Surveyor</label>
+<label><input type="checkbox" value="Building Surveyor"> Building Surveyor</label>
+<label><input type="checkbox" value="Site Supervisor"> Site Supervisor</label>
+<label><input type="checkbox" value="Real Estate Agent"> Real Estate Agent</label>
+<label><input type="checkbox" value="Architect"> Architect</label>
+<label><input type="checkbox" value="Interior Designer"> Interior Designer</label>
+<label><input type="checkbox" value="Construction Worker"> Construction Worker</label>
+<label><input type="checkbox" value="Property Manager"> Property Manager</label>
+<label><input type="checkbox" value="Structural Engineer"> Structural Engineer</label>
+<label><input type="checkbox" value="Urban Planner"> Urban Planner</label>
+<label><input type="checkbox" value="Estimator"> Estimator</label>
+<label><input type="checkbox" value="Land Surveyor"> Land Surveyor</label>
+<label><input type="checkbox" value="Facilities Manager"> Facilities Manager</label>
+<br>
+
+<!-- Consumer Goods -->
+<h3 style="text-align: center;">Consumer Goods</h3>
+<label><input type="checkbox" value="Brand Manager"> Brand Manager</label>
+<label><input type="checkbox" value="Product Development Manager"> Product Development Manager</label>
+<label><input type="checkbox" value="Supply Chain Manager"> Supply Chain Manager</label>
+<label><input type="checkbox" value="Retail Buyer"> Retail Buyer</label>
+<label><input type="checkbox" value="Merchandiser"> Merchandiser</label>
+<label><input type="checkbox" value="Market Research Analyst"> Market Research Analyst</label>
+<label><input type="checkbox" value="Packaging Engineer"> Packaging Engineer</label>
+<label><input type="checkbox" value="Quality Assurance Specialist"> Quality Assurance Specialist</label>
+<label><input type="checkbox" value="Sales Representative"> Sales Representative</label>
+<label><input type="checkbox" value="Inventory Manager"> Inventory Manager</label>
+<label><input type="checkbox" value="Warehouse Supervisor"> Warehouse Supervisor</label>
+<label><input type="checkbox" value="Operations Manager"> Operations Manager</label>
+<label><input type="checkbox" value="Production Planner"> Production Planner</label>
+<label><input type="checkbox" value="Retail Manager"> Retail Manager</label>
+<label><input type="checkbox" value="Distribution Manager"> Distribution Manager</label>
+<br>
+
+<!-- Creative and Media -->
+<h3 style="text-align: center;">Creative and Media</h3>
+<label><input type="checkbox" value="Graphic Designer"> Graphic Designer</label>
+<label><input type="checkbox" value="Video Editor"> Video Editor</label>
+<label><input type="checkbox" value="Animator"> Animator</label>
+<label><input type="checkbox" value="Photographer"> Photographer</label>
+<label><input type="checkbox" value="Illustrator"> Illustrator</label>
+<label><input type="checkbox" value="Copywriter"> Copywriter</label>
+<label><input type="checkbox" value="Art Director"> Art Director</label>
+<label><input type="checkbox" value="Music Producer"> Music Producer</label>
+<label><input type="checkbox" value="Videographer"> Videographer</label>
+<label><input type="checkbox" value="Fashion Designer"> Fashion Designer</label>
+<label><input type="checkbox" value="Web Designer"> Web Designer</label>
+<label><input type="checkbox" value="Journalist"> Journalist</label>
+<label><input type="checkbox" value="Radio Host"> Radio Host</label>
+<label><input type="checkbox" value="Comedian"> Comedian</label>
+<label><input type="checkbox" value="Actor"> Actor</label>
+<label><input type="checkbox" value="Editor (Video/Photo)"> Editor (Video/Photo)</label>
+<label><input type="checkbox" value="YouTuber"> YouTuber</label>
+<label><input type="checkbox" value="Podcaster"> Podcaster</label>
+
+<br>
+
+<!-- Customer Service -->
+<h3 style="text-align: center;">Customer Service</h3>
+<label><input type="checkbox" value="Customer Support Specialist"> Customer Support Specialist</label>
+<label><input type="checkbox" value="Call Center Representative"> Call Center Representative</label>
+<label><input type="checkbox" value="Client Relations Manager"> Client Relations Manager</label>
+<label><input type="checkbox" value="Technical Support Agent"> Technical Support Agent</label>
+<label><input type="checkbox" value="Customer Experience Manager"> Customer Experience Manager</label>
+<br>
+
+<!-- E-Commerce and Online Services -->
+<h3 style="text-align: center;">E-Commerce and Online Services</h3>
+<label><input type="checkbox" value="E-Commerce Manager"> E-Commerce Manager</label><br>
+<label><input type="checkbox" value="Digital Marketing Specialist"> Digital Marketing Specialist</label><br>
+<label><input type="checkbox" value="SEO Specialist"> SEO Specialist</label><br>
+<label><input type="checkbox" value="Affiliate Marketer"> Affiliate Marketer</label><br>
+<label><input type="checkbox" value="Web Shop Manager"> Web Shop Manager</label><br>
+<label><input type="checkbox" value="Dropshipping Specialist"> Dropshipping Specialist</label><br>
+<label><input type="checkbox" value="Online Sales Manager"> Online Sales Manager</label><br>
+<label><input type="checkbox" value="Conversion Rate Optimization (CRO) Specialist"> Conversion Rate Optimization (CRO) Specialist</label><br>
+<label><input type="checkbox" value="Social Media Influencer"> Social Media Influencer</label><br>
+<label><input type="checkbox" value="Online Content Creator"> Online Content Creator</label>
+<br>
+
+<!-- Education and Training -->
+<h3 style="text-align: center;">Education and Training</h3>
+<label><input type="checkbox" value="Teacher"> Teacher</label>
+<label><input type="checkbox" value="Curriculum Developer"> Curriculum Developer</label>
+<label><input type="checkbox" value="Lecturer"> Lecturer</label>
+<label><input type="checkbox" value="School Principal"> School Principal</label>
+<label><input type="checkbox" value="Education Consultant"> Education Consultant</label>
+<label><input type="checkbox" value="Tutor"> Tutor</label>
+<label><input type="checkbox" value="Training Specialist"> Training Specialist</label>
+<label><input type="checkbox" value="Instructional Designer"> Instructional Designer</label>
+<label><input type="checkbox" value="Academic Researcher"> Academic Researcher</label>
+<label><input type="checkbox" value="Career Counselor"> Career Counselor</label>
+<label><input type="checkbox" value="Admissions Officer"> Admissions Officer</label>
+<label><input type="checkbox" value="Student Affairs Coordinator"> Student Affairs Coordinator</label>
+<label><input type="checkbox" value="Education Administrator"> Education Administrator</label>
+<label><input type="checkbox" value="Librarian"> Librarian</label>
+<label><input type="checkbox" value="Special Education Teacher"> Special Education Teacher</label>
+<br>
+
+<!-- Engineering -->
+<h3 style="text-align: center;">Engineering</h3>
+<label><input type="checkbox" value="Mechanical Engineer"> Mechanical Engineer</label>
+<label><input type="checkbox" value="Electrical Engineer"> Electrical Engineer</label>
+<label><input type="checkbox" value="Civil Engineer"> Civil Engineer</label>
+<label><input type="checkbox" value="Chemical Engineer"> Chemical Engineer</label>
+<label><input type="checkbox" value="Environmental Engineer"> Environmental Engineer</label>
+<label><input type="checkbox" value="Aerospace Engineer"> Aerospace Engineer</label>
+<label><input type="checkbox" value="Automotive Engineer"> Automotive Engineer</label>
+<label><input type="checkbox" value="Biomedical Engineer"> Biomedical Engineer</label>
+<label><input type="checkbox" value="Industrial Engineer"> Industrial Engineer</label>
+<label><input type="checkbox" value="Petroleum Engineer"> Petroleum Engineer</label>
+<label><input type="checkbox" value="Mining Engineer"> Mining Engineer</label>
+<label><input type="checkbox" value="Process Engineer"> Process Engineer</label>
+<label><input type="checkbox" value="Structural Engineer"> Structural Engineer</label>
+<label><input type="checkbox" value="Telecommunications Engineer"> Telecommunications Engineer</label>
+<label><input type="checkbox" value="Project Engineer"> Project Engineer</label>
+<br>
+
+<!-- Energy, Oil, and Gas -->
+<h3 style="text-align: center;">Energy, Oil, and Gas</h3>
+<label><input type="checkbox" value="Petroleum Engineer"> Petroleum Engineer</label>
+<label><input type="checkbox" value="Renewable Energy Specialist"> Renewable Energy Specialist</label>
+<label><input type="checkbox" value="Energy Analyst"> Energy Analyst</label>
+<label><input type="checkbox" value="Pipeline Engineer"> Pipeline Engineer</label>
+<label><input type="checkbox" value="Offshore Engineer"> Offshore Engineer</label>
+<label><input type="checkbox" value="Drilling Engineer"> Drilling Engineer</label>
+<label><input type="checkbox" value="Geologist"> Geologist</label>
+<label><input type="checkbox" value="Hydrologist"> Hydrologist</label>
+<label><input type="checkbox" value="Electrical Engineer (Energy Sector)"> Electrical Engineer (Energy Sector)</label>
+<label><input type="checkbox" value="Gas Plant Operator"> Gas Plant Operator</label>
+<label><input type="checkbox" value="Environmental Scientist (Energy Sector)"> Environmental Scientist (Energy Sector)</label>
+<label><input type="checkbox" value="Wind Energy Engineer"> Wind Energy Engineer</label>
+<label><input type="checkbox" value="Solar Energy Consultant"> Solar Energy Consultant</label>
+<label><input type="checkbox" value="Energy Trader"> Energy Trader</label>
+<label><input type="checkbox" value="Oil Field Services Engineer"> Oil Field Services Engineer</label>
+<label><input type="checkbox" value="Solar Panel Installer"> Solar Panel Installer</label>
+<label><input type="checkbox" value="Wind Turbine Technician"> Wind Turbine Technician</label>
+<label><input type="checkbox" value="Sustainability Consultant"> Sustainability Consultant</label>
+<label><input type="checkbox" value="Environmental Scientist"> Environmental Scientist</label>
+<label><input type="checkbox" value="Renewable Energy Engineer"> Renewable Energy Engineer</label>
+<br>
+
+<!-- Fashion and Textile -->
+<h3 style="text-align: center;">Fashion and Textile</h3>
+<label><input type="checkbox" value="Fashion Designer"> Fashion Designer</label>
+<label><input type="checkbox" value="Textile Engineer"> Textile Engineer</label>
+<label><input type="checkbox" value="Fashion Merchandiser"> Fashion Merchandiser</label>
+<label><input type="checkbox" value="Tailor"> Tailor</label>
+<label><input type="checkbox" value="Pattern Maker"> Pattern Maker</label>
+<br>
+
+<!-- Finance and Accounting -->
+<h3 style="text-align: center;">Finance and Accounting</h3>
+<label><input type="checkbox" value="Accountant"> Accountant</label>
+<label><input type="checkbox" value="Financial Analyst"> Financial Analyst</label>
+<label><input type="checkbox" value="Credit Analyst"> Credit Analyst</label>
+<label><input type="checkbox" value="Auditor"> Auditor</label>
+<label><input type="checkbox" value="Tax Consultant"> Tax Consultant</label>
+<label><input type="checkbox" value="Financial Planner"> Financial Planner</label>
+<label><input type="checkbox" value="Investment Banker"> Investment Banker</label>
+<label><input type="checkbox" value="Payroll Administrator"> Payroll Administrator</label>
+<label><input type="checkbox" value="Risk Manager"> Risk Manager</label>
+<label><input type="checkbox" value="Loan Officer"> Loan Officer</label>
+<label><input type="checkbox" value="Treasury Analyst"> Treasury Analyst</label>
+<label><input type="checkbox" value="Budget Analyst"> Budget Analyst</label>
+<label><input type="checkbox" value="Portfolio Manager"> Portfolio Manager</label>
+<label><input type="checkbox" value="Actuary"> Actuary</label>
+<label><input type="checkbox" value="Forensic Accountant"> Forensic Accountant</label>
+<br>
+
+<!-- Fitness and Wellness -->
+<h3 style="text-align: center;">Fitness and Wellness</h3>
+<label><input type="checkbox" value="Personal Trainer"> Personal Trainer</label><br>
+<label><input type="checkbox" value="Fitness Instructor"> Fitness Instructor</label><br>
+<label><input type="checkbox" value="Yoga Instructor"> Yoga Instructor</label><br>
+<label><input type="checkbox" value="Pilates Instructor"> Pilates Instructor</label><br>
+<label><input type="checkbox" value="Wellness Coach"> Wellness Coach</label><br>
+<label><input type="checkbox" value="Nutritionist"> Nutritionist</label><br>
+<label><input type="checkbox" value="Physiotherapist"> Physiotherapist</label><br>
+<label><input type="checkbox" value="Massage Therapist"> Massage Therapist</label><br>
+<label><input type="checkbox" value="Sports Coach"> Sports Coach</label><br>
+<label><input type="checkbox" value="Meditation Coach"> Meditation Coach</label>
+
+<!-- Healthcare and Medical -->
+<h3 style="text-align: center;">Healthcare and Medical</h3>
+<label><input type="checkbox" value="Doctor"> Doctor</label>
+<label><input type="checkbox" value="Clinical Officer"> Clinical Officer</label>
+<label><input type="checkbox" value="Nurse"> Nurse</label>
+<label><input type="checkbox" value="Pharmacist"> Pharmacist</label>
+<label><input type="checkbox" value="Physiotherapist"> Physiotherapist</label>
+<label><input type="checkbox" value="Medical Lab Technician"> Medical Lab Technician</label>
+<label><input type="checkbox" value="Dentist"> Dentist</label>
+<label><input type="checkbox" value="Radiologist"> Radiologist</label>
+<label><input type="checkbox" value="Surgeon"> Surgeon</label>
+<label><input type="checkbox" value="Occupational Therapist"> Occupational Therapist</label>
+<label><input type="checkbox" value="Paramedic"> Paramedic</label>
+<label><input type="checkbox" value="Nutritionist"> Nutritionist</label>
+<label><input type="checkbox" value="Optometrist"> Optometrist</label>
+<label><input type="checkbox" value="Public Health Specialist"> Public Health Specialist</label>
+<label><input type="checkbox" value="Psychologist"> Psychologist</label>
+<label><input type="checkbox" value="Healthcare Administrator"> Healthcare Administrator</label>
+<label><input type="checkbox" value="Acupuncturist"> Acupuncturist</label>
+<label><input type="checkbox" value="Naturopath"> Naturopath</label>
+<label><input type="checkbox" value="Homeopath"> Homeopath</label>
+<label><input type="checkbox" value="Speech Therapist"> Speech Therapist</label>
+<label><input type="checkbox" value="Respiratory Therapist"> Respiratory Therapist</label>
+<label><input type="checkbox" value="Medical Assistant"> Medical Assistant</label>
+<label><input type="checkbox" value="Healthcare IT Specialist"> Healthcare IT Specialist</label>
+<label><input type="checkbox" value="Phlebotomist"> Phlebotomist</label>
+<br>
+
+<!-- Hospitality and Tourism -->
+<h3 style="text-align: center;">Hospitality and Tourism</h3>
+<label><input type="checkbox" value="Hotel Manager"> Hotel Manager</label><br>
+<label><input type="checkbox" value="Event Planner"> Event Planner</label><br>
+<label><input type="checkbox" value="Tour Guide"> Tour Guide</label><br>
+<label><input type="checkbox" value="Chef"> Chef</label><br>
+<label><input type="checkbox" value="Concierge"> Concierge</label><br>
+<label><input type="checkbox" value="Housekeeping Supervisor"> Housekeeping Supervisor</label><br>
+<label><input type="checkbox" value="Food and Beverage Manager"> Food and Beverage Manager</label><br>
+<label><input type="checkbox" value="Travel Agent"> Travel Agent</label><br>
+<label><input type="checkbox" value="Barista"> Barista</label><br>
+<label><input type="checkbox" value="Bartender"> Bartender</label><br>
+<label><input type="checkbox" value="Receptionist"> Receptionist</label><br>
+<label><input type="checkbox" value="Restaurant Manager"> Restaurant Manager</label><br>
+<label><input type="checkbox" value="Sous Chef"> Sous Chef</label><br>
+<label><input type="checkbox" value="Catering Manager"> Catering Manager</label><br>
+<label><input type="checkbox" value="Front Desk Clerk"> Front Desk Clerk</label>
+
+
+<!-- Human Resources and Recruitment -->
+<h3 style="text-align: center;">Human Resources and Recruitment</h3>
+<label><input type="checkbox" value="HR Manager"> HR Manager</label><br>
+<label><input type="checkbox" value="HR Consultant"> HR Consultant</label><br>
+<label><input type="checkbox" value="Talent Acquisition Specialist"> Talent Acquisition Specialist</label><br>
+<label><input type="checkbox" value="Recruitment Officer"> Recruitment Officer</label><br>
+<label><input type="checkbox" value="Training and Development Coordinator"> Training and Development Coordinator</label><br>
+<label><input type="checkbox" value="Compensation and Benefits Manager"> Compensation and Benefits Manager</label><br>
+<label><input type="checkbox" value="Labor Relations Specialist"> Labor Relations Specialist</label><br>
+<label><input type="checkbox" value="Organizational Development Consultant"> Organizational Development Consultant</label><br>
+<label><input type="checkbox" value="Payroll Manager"> Payroll Manager</label><br>
+<label><input type="checkbox" value="HR Business Partner"> HR Business Partner</label><br>
+<label><input type="checkbox" value="Performance Analyst"> Performance Analyst</label><br>
+<label><input type="checkbox" value="Employment Coordinator"> Employment Coordinator</label><br>
+<label><input type="checkbox" value="HR Assistant"> HR Assistant</label><br>
+<label><input type="checkbox" value="HR Generalist"> HR Generalist</label><br>
+<label><input type="checkbox" value="Career Development Advisor"> Career Development Advisor</label>
+<br>
+
+<!-- IT and Software Development -->
+<h3 style="text-align: center;">IT and Software Development</h3>
+<label><input type="checkbox" value="Software Developer"> Software Developer</label>
+<label><input type="checkbox" value="Data Scientist"> Data Scientist</label>
+<label><input type="checkbox" value="IT Consultant"> IT Consultant</label>
+<label><input type="checkbox" value="Network Administrator"> Network Administrator</label>
+<label><input type="checkbox" value="Cybersecurity Specialist"> Cybersecurity Specialist</label>
+<label><input type="checkbox" value="Systems Analyst"> Systems Analyst</label>
+<label><input type="checkbox" value="Web Developer"> Web Developer</label>
+<label><input type="checkbox" value="Database Administrator"> Database Administrator</label>
+<label><input type="checkbox" value="Cloud Engineer"> Cloud Engineer</label>
+<label><input type="checkbox" value="Machine Learning Engineer"> Machine Learning Engineer</label>
+<label><input type="checkbox" value="DevOps Engineer"> DevOps Engineer</label>
+<label><input type="checkbox" value="Front-End Developer"> Front-End Developer</label>
+<label><input type="checkbox" value="Back-End Developer"> Back-End Developer</label>
+<label><input type="checkbox" value="IT Support Specialist"> IT Support Specialist</label>
+<label><input type="checkbox" value="Mobile App Developer"> Mobile App Developer</label>
+<label><input type="checkbox" value="AI Specialist"> AI Specialist</label>
+<label><input type="checkbox" value="Data Engineer"> Data Engineer</label>
+<label><input type="checkbox" value="Big Data Analyst"> Big Data Analyst</label>
+<br>
+
+<!-- Legal Services -->
+<h3 style="text-align: center;">Legal Services</h3>
+<label><input type="checkbox" value="Lawyer"> Lawyer</label>
+<label><input type="checkbox" value="Paralegal"> Paralegal</label>
+<label><input type="checkbox" value="Legal Secretary"> Legal Secretary</label>
+<label><input type="checkbox" value="Legal Consultant"> Legal Consultant</label>
+<label><input type="checkbox" value="Contract Manager"> Contract Manager</label>
+<label><input type="checkbox" value="Litigation Specialist"> Litigation Specialist</label>
+<label><input type="checkbox" value="Corporate Counsel"> Corporate Counsel</label>
+<label><input type="checkbox" value="Court Reporter"> Court Reporter</label>
+<label><input type="checkbox" value="Mediator"> Mediator</label>
+<label><input type="checkbox" value="Compliance Officer"> Compliance Officer</label>
+<label><input type="checkbox" value="Trademark Attorney"> Trademark Attorney</label>
+<label><input type="checkbox" value="Public Prosecutor"> Public Prosecutor</label>
+<label><input type="checkbox" value="Notary Public"> Notary Public</label>
+<label><input type="checkbox" value="Family Lawyer"> Family Lawyer</label>
+<label><input type="checkbox" value="Criminal Lawyer"> Criminal Lawyer</label>
+<br>
+
+<!-- Manufacturing and Production -->
+<h3 style="text-align: center;">Manufacturing and Production</h3>
+<label><input type="checkbox" value="Production Manager"> Production Manager</label>
+<label><input type="checkbox" value="Quality Control Manager"> Quality Control Manager</label>
+<label><input type="checkbox" value="Assembly Line Worker"> Assembly Line Worker</label>
+<label><input type="checkbox" value="Manufacturing Engineer"> Manufacturing Engineer</label>
+<label><input type="checkbox" value="Industrial Engineer"> Industrial Engineer</label>
+<label><input type="checkbox" value="Process Technician"> Process Technician</label>
+<label><input type="checkbox" value="Packaging Supervisor"> Packaging Supervisor</label>
+<label><input type="checkbox" value="Supply Chain Coordinator"> Supply Chain Coordinator</label>
+<label><input type="checkbox" value="Maintenance Engineer"> Maintenance Engineer</label>
+<label><input type="checkbox" value="Machine Operator"> Machine Operator</label>
+<label><input type="checkbox" value="Operations Manager"> Operations Manager</label>
+<label><input type="checkbox" value="Logistics Coordinator"> Logistics Coordinator</label>
+<label><input type="checkbox" value="Procurement Specialist"> Procurement Specialist</label>
+<label><input type="checkbox" value="Factory Worker"> Factory Worker</label>
+<label><input type="checkbox" value="Materials Manager"> Materials Manager</label>
+<br>
+
+<!-- Marketing, Advertising, and Sales -->
+<h3 style="text-align: center;">Marketing, Advertising, and Sales</h3>
+<label><input type="checkbox" value="Marketing Manager"> Marketing Manager</label>
+<label><input type="checkbox" value="Sales Executive"> Sales Executive</label>
+<label><input type="checkbox" value="Advertising Specialist"> Advertising Specialist</label>
+<label><input type="checkbox" value="Brand Strategist"> Brand Strategist</label>
+<label><input type="checkbox" value="Social Media Manager"> Social Media Manager</label>
+<label><input type="checkbox" value="Market Research Analyst"> Market Research Analyst</label>
+<label><input type="checkbox" value="Copywriter"> Copywriter</label>
+<label><input type="checkbox" value="Digital Marketing Specialist"> Digital Marketing Specialist</label>
+<label><input type="checkbox" value="Account Executive"> Account Executive</label>
+<label><input type="checkbox" value="Public Relations Officer"> Public Relations Officer</label>
+<label><input type="checkbox" value="Event Marketing Coordinator"> Event Marketing Coordinator</label>
+<label><input type="checkbox" value="Retail Sales Manager"> Retail Sales Manager</label>
+<label><input type="checkbox" value="Business Development Manager"> Business Development Manager</label>
+<label><input type="checkbox" value="Advertising Account Manager"> Advertising Account Manager</label>
+<label><input type="checkbox" value="Product Manager"> Product Manager</label>
+<br>
+
+<!-- Mining and Natural Resources -->
+<h3 style="text-align: center;">Mining and Natural Resources</h3>
+<label><input type="checkbox" value="Mining Engineer"> Mining Engineer</label>
+<label><input type="checkbox" value="Geologist"> Geologist</label>
+<label><input type="checkbox" value="Mineral Surveyor"> Mineral Surveyor</label>
+<label><input type="checkbox" value="Metallurgist"> Metallurgist</label>
+<label><input type="checkbox" value="Environmental Scientist (Mining Sector)"> Environmental Scientist (Mining Sector)</label>
+<label><input type="checkbox" value="Mine Safety Engineer"> Mine Safety Engineer</label>
+<label><input type="checkbox" value="Quarry Manager"> Quarry Manager</label>
+<label><input type="checkbox" value="Hydrogeologist"> Hydrogeologist</label>
+<label><input type="checkbox" value="Explosives Engineer"> Explosives Engineer</label>
+<label><input type="checkbox" value="Blasting Technician"> Blasting Technician</label>
+<label><input type="checkbox" value="Mine Manager"> Mine Manager</label>
+<label><input type="checkbox" value="Drilling Technician"> Drilling Technician</label>
+<label><input type="checkbox" value="Process Plant Operator"> Process Plant Operator</label>
+<br>
+
+<!-- Non-Profit and NGOs -->
+<h3 style="text-align: center;">Non-Profit and NGOs</h3>
+<label><input type="checkbox" value="NGO Program Officer"> NGO Program Officer</label>
+<label><input type="checkbox" value="Fundraising Specialist"> Fundraising Specialist</label>
+<label><input type="checkbox" value="Grant Writer"> Grant Writer</label>
+<label><input type="checkbox" value="Humanitarian Aid Worker"> Humanitarian Aid Worker</label>
+<label><input type="checkbox" value="Volunteer Coordinator"> Volunteer Coordinator</label>
+<label><input type="checkbox" value="Advocacy Specialist"> Advocacy Specialist</label>
+<label><input type="checkbox" value="Community Organizer"> Community Organizer</label>
+<label><input type="checkbox" value="Project Coordinator (NGO)"> Project Coordinator (NGO)</label>
+<label><input type="checkbox" value="Environmental Advocate"> Environmental Advocate</label>
+<label><input type="checkbox" value="Social Worker (NGO Sector)"> Social Worker (NGO Sector)</label>
+<label><input type="checkbox" value="Microfinance Specialist"> Microfinance Specialist</label>
+<label><input type="checkbox" value="Campaign Manager"> Campaign Manager</label>
+<label><input type="checkbox" value="Human Rights Advocate"> Human Rights Advocate</label>
+<br>
+
+<!-- Non-Traditional and Gig Economy -->
+<h3 style="text-align: center;">Non-Traditional and Gig Economy</h3>
+<label><input type="checkbox" value="Freelance Writer"> Freelance Writer</label>
+<label><input type="checkbox" value="Online Tutor"> Online Tutor</label>
+<label><input type="checkbox" value="Virtual Assistant"> Virtual Assistant</label>
+<label><input type="checkbox" value="Delivery Driver"> Delivery Driver</label>
+<label><input type="checkbox" value="Ride-share Driver"> Ride-share Driver</label>
+<label><input type="checkbox" value="Remote Worker Specialist"> Remote Worker Specialist</label>
+<label><input type="checkbox" value="Freelance Consultant"> Freelance Consultant (various fields)</label>
+<label><input type="checkbox" value="Freelance Graphic Designer"> Freelance Graphic Designer</label>
+<label><input type="checkbox" value="Freelance Web Developer"> Freelance Web Developer</label>
+<label><input type="checkbox" value="Freelance Marketing Specialist"> Freelance Marketing Specialist</label>
+<br>
+
+<!-- Public Services and Government -->
+<h3 style="text-align: center;">Public Services and Government</h3>
+<label><input type="checkbox" value="Policy Analyst"> Policy Analyst</label>
+<label><input type="checkbox" value="Public Relations Officer"> Public Relations Officer</label>
+<label><input type="checkbox" value="Administrative Officer"> Administrative Officer</label>
+<label><input type="checkbox" value="Government Affairs Specialist"> Government Affairs Specialist</label>
+<label><input type="checkbox" value="Legislative Assistant"> Legislative Assistant</label>
+<label><input type="checkbox" value="City Planner"> City Planner</label>
+<label><input type="checkbox" value="Diplomat"> Diplomat</label>
+<label><input type="checkbox" value="Social Worker"> Social Worker</label>
+<label><input type="checkbox" value="Public Health Officer"> Public Health Officer</label>
+<label><input type="checkbox" value="Economic Development Specialist"> Economic Development Specialist</label>
+<label><input type="checkbox" value="Community Outreach Coordinator"> Community Outreach Coordinator</label>
+<label><input type="checkbox" value="Public Administrator"> Public Administrator</label>
+<label><input type="checkbox" value="Program Manager (Public Sector)"> Program Manager (Public Sector)</label>
+<label><input type="checkbox" value="Civil Servant"> Civil Servant</label>
+<label><input type="checkbox" value="Customs Officer"> Customs Officer</label>
+<br>
+
+<!-- Real Estate and Property Management -->
+<h3 style="text-align: center;">Real Estate and Property Management</h3>
+<label><input type="checkbox" value="Real Estate Agent"> Real Estate Agent</label>
+<label><input type="checkbox" value="Property Manager"> Property Manager</label>
+<label><input type="checkbox" value="Leasing Consultant"> Leasing Consultant</label>
+<label><input type="checkbox" value="Real Estate Broker"> Real Estate Broker</label>
+<label><input type="checkbox" value="Facilities Manager"> Facilities Manager</label>
+<label><input type="checkbox" value="Valuation Surveyor"> Valuation Surveyor</label>
+<label><input type="checkbox" value="Commercial Real Estate Agent"> Commercial Real Estate Agent</label>
+<label><input type="checkbox" value="Estate Planner"> Estate Planner</label>
+<label><input type="checkbox" value="Property Development Manager"> Property Development Manager</label>
+<label><input type="checkbox" value="Asset Manager"> Asset Manager</label>
+<label><input type="checkbox" value="Residential Real Estate Agent"> Residential Real Estate Agent</label>
+<label><input type="checkbox" value="Real Estate Investor"> Real Estate Investor</label>
+<label><input type="checkbox" value="Building Inspector"> Building Inspector</label>
+<label><input type="checkbox" value="Landlord"> Landlord</label>
+<label><input type="checkbox" value="Appraiser"> Appraiser</label>
+<br>
+
+<!-- Research and Development -->
+<h3 style="text-align: center;">Research and Development</h3>
+<label><input type="checkbox" value="Research Scientist"> Research Scientist</label>
+<label><input type="checkbox" value="Data Analyst (R&D)"> Data Analyst (R&D)</label>
+<label><input type="checkbox" value="Clinical Researcher"> Clinical Researcher</label>
+<label><input type="checkbox" value="Laboratory Technician"> Laboratory Technician</label>
+<label><input type="checkbox" value="Policy Researcher"> Policy Researcher</label>
+<label><input type="checkbox" value="Environmental Researcher"> Environmental Researcher</label>
+<label><input type="checkbox" value="Biotechnologist"> Biotechnologist</label>
+<label><input type="checkbox" value="Sociologist"> Sociologist</label>
+<label><input type="checkbox" value="Anthropologist"> Anthropologist</label>
+<label><input type="checkbox" value="Patent Researcher"> Patent Researcher</label>
+<label><input type="checkbox" value="Market Researcher"> Market Researcher</label>
+<br>
+
+<!-- Science and Technology (STEM) -->
+<h3 style="text-align: center;">Science and Technology (STEM)</h3>
+<label><input type="checkbox" value="Data Scientist"> Data Scientist</label>
+<label><input type="checkbox" value="Biochemist"> Biochemist</label>
+<label><input type="checkbox" value="Physicist"> Physicist</label>
+<label><input type="checkbox" value="Chemist"> Chemist</label>
+<label><input type="checkbox" value="Statistician"> Statistician</label>
+<label><input type="checkbox" value="Physicist"> Physicist</label>
+<label><input type="checkbox" value="Research Scientist (General)"> Research Scientist (General)</label>
+<label><input type="checkbox" value="Bioinformatician"> Bioinformatician</label>
+<br>
+
+<!-- Security Services -->
+<h3 style="text-align: center;">Security Services</h3>
+<label><input type="checkbox" value="Security Officer"> Security Officer</label>
+<label><input type="checkbox" value="Private Investigator"> Private Investigator</label>
+<label><input type="checkbox" value="Security Consultant"> Security Consultant</label>
+<label><input type="checkbox" value="CCTV Operator"> CCTV Operator</label>
+<label><input type="checkbox" value="Bodyguard"> Bodyguard</label>
+<label><input type="checkbox" value="Security Systems Technician"> Security Systems Technician</label>
+<label><input type="checkbox" value="Bouncer"> Bouncer</label>
+<label><input type="checkbox" value="Loss Prevention Officer"> Loss Prevention Officer</label>
+<label><input type="checkbox" value="Fire Safety Officer"> Fire Safety Officer</label>
+<label><input type="checkbox" value="Security Manager"> Security Manager</label>
+<label><input type="checkbox" value="Surveillance Specialist"> Surveillance Specialist</label>
+<label><input type="checkbox" value="Alarm Response Officer"> Alarm Response Officer</label>
+<label><input type="checkbox" value="Access Control Specialist"> Access Control Specialist</label>
+<label><input type="checkbox" value="Personal Protection Officer"> Personal Protection Officer</label>
+<label><input type="checkbox" value="Security Patrol Officer"> Security Patrol Officer</label>
+<br>
+
+<!-- Telecommunications -->
+<h3 style="text-align: center;">Telecommunications</h3>
+<label><input type="checkbox" value="Network Engineer"> Network Engineer</label>
+<label><input type="checkbox" value="Telecommunications Technician"> Telecommunications Technician</label>
+<label><input type="checkbox" value="Satellite Communications Engineer"> Satellite Communications Engineer</label>
+<label><input type="checkbox" value="Fiber Optic Technician"> Fiber Optic Technician</label>
+<label><input type="checkbox" value="Systems Administrator"> Systems Administrator</label>
+<label><input type="checkbox" value="Telecom Sales Representative"> Telecom Sales Representative</label>
+<label><input type="checkbox" value="Radio Technician"> Radio Technician</label>
+<label><input type="checkbox" value="IT Support Specialist (Telecom)"> IT Support Specialist (Telecom)</label>
+<label><input type="checkbox" value="Data Network Specialist"> Data Network Specialist</label>
+<label><input type="checkbox" value="Customer Service Representative (Telecom)"> Customer Service Representative (Telecom)</label>
+<label><input type="checkbox" value="VoIP Engineer"> VoIP Engineer</label>
+<label><input type="checkbox" value="Mobile Network Engineer"> Mobile Network Engineer</label>
+<label><input type="checkbox" value="Telecom Project Manager"> Telecom Project Manager</label>
+<label><input type="checkbox" value="Technical Support Engineer"> Technical Support Engineer</label>
+<label><input type="checkbox" value="Broadband Installer"> Broadband Installer</label>
+<br>
+
+<!-- Training and Development Services -->
+<h3 style="text-align: center;">Training and Development Services</h3>
+<label><input type="checkbox" value="Corporate Trainer"> Corporate Trainer</label>
+<label><input type="checkbox" value="Instructional Designer"> Instructional Designer</label>
+<label><input type="checkbox" value="Learning and Development Manager"> Learning and Development Manager</label>
+<label><input type="checkbox" value="E-Learning Developer"> E-Learning Developer</label>
+<label><input type="checkbox" value="Training Coordinator"> Training Coordinator</label>
+<label><input type="checkbox" value="Leadership Coach"> Leadership Coach</label>
+<label><input type="checkbox" value="Training Specialist"> Training Specialist</label>
+<label><input type="checkbox" value="Curriculum Developer"> Curriculum Developer</label>
+<label><input type="checkbox" value="Technical Trainer"> Technical Trainer</label>
+<label><input type="checkbox" value="Skills Development Officer"> Skills Development Officer</label>
+<label><input type="checkbox" value="Educational Consultant"> Educational Consultant</label>
+<label><input type="checkbox" value="Workshop Facilitator"> Workshop Facilitator</label>
+<label><input type="checkbox" value="Career Coach"> Career Coach</label>
+<label><input type="checkbox" value="Learning Consultant"> Learning Consultant</label>
+<label><input type="checkbox" value="Development Program Manager"> Development Program Manager</label>
+<br>
+
+<!-- Transport and Logistics -->
+<h3 style="text-align: center;">Transport and Logistics</h3>
+<label><input type="checkbox" value="Truck Driver"> Truck Driver</label>
+<label><input type="checkbox" value="Logistics Coordinator"> Logistics Coordinator</label>
+<label><input type="checkbox" value="Supply Chain Manager"> Supply Chain Manager</label>
+<label><input type="checkbox" value="Warehouse Supervisor"> Warehouse Supervisor</label>
+<label><input type="checkbox" value="Transport Planner"> Transport Planner</label>
+<label><input type="checkbox" value="Freight Forwarder"> Freight Forwarder</label>
+<label><input type="checkbox" value="Freight Broker"> Freight Broker</label>
+<label><input type="checkbox" value="Delivery Driver"> Delivery Driver</label>
+<label><input type="checkbox" value="Fleet Manager"> Fleet Manager</label>
+<label><input type="checkbox" value="Inventory Control Specialist"> Inventory Control Specialist</label>
+<label><input type="checkbox" value="Shipping Coordinator"> Shipping Coordinator</label>
+<label><input type="checkbox" value="Supply Chain Analyst"> Supply Chain Analyst</label>
+<label><input type="checkbox" value="Procurement Manager"> Procurement Manager</label>
+<label><input type="checkbox" value="Cargo Agent"> Cargo Agent</label>
+<label><input type="checkbox" value="Logistics Analyst"> Logistics Analyst</label>
+<label><input type="checkbox" value="Operations Manager"> Operations Manager</label>
+<label><input type="checkbox" value="Import/Export Specialist"> Import/Export Specialist</label>
+<label><input type="checkbox" value="Traffic Manager"> Traffic Manager</label>
+<label><input type="checkbox" value="Distribution Manager"> Distribution Manager</label>
+<br>
+
+<!-- Utilities and Public Services -->
+<h3 style="text-align: center;">Utilities and Public Services</h3>
+<label><input type="checkbox" value="Electrician"> Electrician</label>
+<label><input type="checkbox" value="Water Treatment Specialist"> Water Treatment Specialist</label>
+<label><input type="checkbox" value="Energy Analyst"> Energy Analyst</label>
+<label><input type="checkbox" value="Gas Technician"> Gas Technician</label>
+<label><input type="checkbox" value="Utility Manager"> Utility Manager</label>
+<label><input type="checkbox" value="Meter Reader"> Meter Reader</label>
+<label><input type="checkbox" value="Public Works Officer"> Public Works Officer</label>
+<label><input type="checkbox" value="Waste Management Specialist"> Waste Management Specialist</label>
+<label><input type="checkbox" value="Environmental Health Officer"> Environmental Health Officer</label>
+<label><input type="checkbox" value="Power Plant Operator"> Power Plant Operator</label>
+<label><input type="checkbox" value="Safety Inspector"> Safety Inspector</label>
+<label><input type="checkbox" value="Utility Engineer"> Utility Engineer</label>
+<label><input type="checkbox" value="Hydro Technician"> Hydro Technician</label>
+<label><input type="checkbox" value="Wind Turbine Technician"> Wind Turbine Technician</label>
+<label><input type="checkbox" value="Solar Power Technician"> Solar Power Technician</label>
+
+</div>
+</div>
+    <br>
+
+
+
+
+
+    <small class="form-label text-secondary" >Professional Title</small>
+
+      <input type="text" id="professionalTitle" placeholder="Other (Specify if your profession isn’t listed)" class="contact-in-input" name="professional_title">
+
+
+
+
+
+
+
+
+
+
+
+      <small class="form-label text-secondary" >Your Industry</small>
+    <select  id="industry" name="industry" class="contact-in-input">
+			<option value="#">Select your industry</option>
+            <option value="agriculture">Agriculture</option>
+            <option value="arts-culture">Arts and Culture</option>
+            <option value="automotive">Automotive</option>
+            <option value="construction">Construction</option>
+            <option value="consumer-goods">Consumer Goods</option>
+            <option value="creatives">Creatives</option>
+            <option value="education">Education</option>
+            <option value="energy-utilities">Energy and Utilities</option>
+            <option value="engineering">Engineering</option>
+            <option value="environmental-services">Environmental Services</option>
+            <option value="fashion-design">Fashion and Design</option>
+            <option value="finance-banking">Finance and Banking</option>
+            <option value="food-beverage">Food and Beverage</option>
+            <option value="healthcare-medical">Healthcare and Medical</option>
+            <option value="hospitality-tourism">Hospitality and Tourism</option>
+            <option value="information-technology">Information Technology</option>
+            <option value="insurance">Insurance</option>
+            <option value="legal-services">Legal Services</option>
+            <option value="manufacturing">Manufacturing</option>
+            <option value="media-entertainment">Media and Entertainment</option>
+            <option value="mining-minerals">Mining and Minerals</option>
+            <option value="nonprofit-social-services">Nonprofit and Social Services</option>
+            <option value="pharmaceuticals">Pharmaceuticals</option>
+            <option value="professional-services">Professional Services</option>
+            <option value="real-estate">Real Estate</option>
+            <option value="research-development">Research and Development</option>
+            <option value="retail">Retail</option>
+            <option value="security-services">Security Services</option>
+            <option value="telecommunications">Telecommunications</option>
+            <option value="transport-logistics">Transport and Logistics</option>
+            <option value="training-services">Training Services</option>
+            <option value="utilities-public-services">Utilities and Public Services</option>
+            <option value="wholesale-distribution">Wholesale and Distribution</option>
+            </select>
+
+
+
+      <small class="form-label text-secondary" >Years of Experience</small>
+      <select  id="experienceSelect" class="contact-in-input" name="years_of_experience">
+          <option value="" disabled selected>Choose your years of experience</option>
+          <option value="1-3 years">1-3 years</option>
+          <option value="3-5 years">3-5 years</option>
+          <option value="5+ years">5+ years</option>
+      </select>
+       
+      <small class="form-label text-secondary" >Location</small>
+<select  name="country" class="contact-in-input" label="Choose your country" required id="id_country">
+  <option selected value="#" style="font-weight: bold;">City/Towns</option>
+  <option value="Chibombo ">Chibombo </option>
+  <option value="Chisamba                                                                                                                ">Chisamba                                                                                                                </option>
+  <option value="Kabwe                                                                                                          ">Kabwe                                                                                                          </option>
+  <option value="Kapiri Mposhi                                                                                                                   ">Kapiri Mposhi                                                                                                                   </option>
+  <option value="Mkushi                                                                                                         ">Mkushi                                                                                                         </option>
+  <option value="Mumbwa ">Mumbwa </option>
+  <option value="Luano                                                                                                                  ">Luano                                                                                                                  </option>
+  <option value="Serenje   ">Serenje   </option>
+  <option value="Chililabombwe                                                                                                           ">Chililabombwe                                                                                                           </option>
+  <option value="Chingola                                                                                                          ">Chingola                                                                                                          </option>
+  <option value="Kalulushi                                                                                                           ">Kalulushi                                                                                                           </option>
+  <option value="Kitwe                                                                                                           ">Kitwe                                                                                                           </option>
+  <option value="Luanshya                                                                                                          ">Luanshya                                                                                                          </option>
+  <option value="Lufwanyama                                                                                                          ">Lufwanyama                                                                                                          </option>
+  <option value="Mpongwe                                                                                                           ">Mpongwe                                                                                                           </option>
+  <option value="Masaiti                                                                                                           ">Masaiti                                                                                                           </option>
+  <option value="Mufulira                                                                                                        ">Mufulira                                                                                                        </option>
+  <option value="Ndola     ">Ndola     </option>
+  <option value="Chadiza                                                                                                                                                                                                                                                                                                                          ">Chadiza                                                                                                                                                                                                                                                                                                                       </option>
+  <option value="Chipata">Chipata</option>
+  <option value="Katete                                                                                                                     ">Katete                                                                                                                     </option>
+  <option value="Lundazi ">Lundazi </option>
+  <option value="Mfuwe                                                                                                          ">Mfuwe                                                                                                          </option>
+  <option value="Nyimba                                                                                                           ">Nyimba                                                                                                           </option>
+  <option value="Petauke">Petauke</option>
+  <option value="Sinda">Sinda</option>
+  <option value="Kawambwa                                                                                                           ">Kawambwa                                                                                                           </option>
+  <option value="Mansa                                                                                                         ">Mansa                                                                                                         </option>
+  <option value="Mwense ">Mwense </option>
+  <option value="Nchelenge                                                                                                          ">Nchelenge                                                                                                          </option>
+  <option value="Samfya ">Samfya </option>
+  <option value="Chongwe ">Chongwe </option>
+  <option value="Chirundu                                                                                                                   ">Chirundu                                                                                                                   </option>
+  <option value="Kafue                                                                                                          ">Kafue                                                                                                          </option>
+  <option value="Luangwa                                                                                                           ">Luangwa                                                                                                           </option>
+  <option value="Lusaka  ">Lusaka  </option>
+  <option value="Chama">Chama</option>
+  <option value="Mpika">Mpika</option>
+  <option value="Shiwangadu ">Shiwangadu </option>
+  <option value="Chinsali  ">Chinsali  </option>
+  <option value="Isoka ">Isoka </option>
+  <option value="Mafinga">Mafinga</option>
+  <option value="Nakonde">Nakonde</option>
+  <option value="Chilubi                                                                                                                                                                                                                                                                                                                                                                                                                          ">Chilubi                                                                                                                                                                                                                                                                                                                                                                                                                      </option>
+  <option value="Kaputa ">Kaputa </option>
+  <option value="Kasama                                                                                                          ">Kasama                                                                                                          </option>
+  <option value="Lubingu                                                                                                          ">Lubingu                                                                                                          </option>
+  <option value="Mbala                                                                                                                                                                                                                   ">Mbala                                                                                                                                                                                                                   </option>
+  <option value="Mporokoso">Mporokoso</option>
+  <option value="Mufumbwe                                                                                                          ">Mufumbwe                                                                                                          </option>
+  <option value="Kabompo                                                                                                                     ">Kabompo                                                                                                                     </option>
+  <option value="Kasempa                                                                                                         ">Kasempa                                                                                                         </option>
+  <option value="Mwinilunga                                                                                                          ">Mwinilunga                                                                                                          </option>
+  <option value="Solwezi                                                                                                           ">Solwezi                                                                                                           </option>
+  <option value="Zambezi">Zambezi</option>
+  <option value="Choma                                                                                                           ">Choma                                                                                                           </option>
+  <option value="Gwembe">Gwembe</option>
+  <option value="Kalomo                                                                                                             ">Kalomo                                                                                                             </option>
+  <option value="Namwala  ">Namwala  </option>
+  <option value="Mazabuka                                                                                                           ">Mazabuka                                                                                                           </option>
+  <option value="Monze ">Monze </option>
+  <option value="Pemba                                                                                                                                                                                                                 ">Pemba                                                                                                                                                                                                                 </option>
+  <option value="Livingstone                                                                                                                     ">Livingstone                                                                                                                     </option>
+  <option value="Siavonga                                                                                                          ">Siavonga                                                                                                          </option>
+  <option value="Sinazongwe">Sinazongwe</option>
+  <option value="Zimba ">Zimba </option>
+  <option value="Kalabo                                                                                                           ">Kalabo                                                                                                           </option>
+  <option value="Kaoma                                                                                                          ">Kaoma                                                                                                          </option>
+  <option value="Lukulu                                                                                                           ">Lukulu                                                                                                           </option>
+  <option value="Mongu                                                                                                          ">Mongu                                                                                                          </option>
+  <option value="Senanga                                                                                                         ">Senanga                                                                                                         </option>
+  <option value="Sesheke">Sesheke</option>
+
+
+</select>
+
+<small class="form-label text-secondary" > Select Province</small>
+
+<!-- PROVINCES -->
+
+<select  id="industry" name="state_province" class="contact-in-input">
+<option value="Central">Province</option>
+<option value="Central">Central</option>
+<option value="Copperbelt">Copperbelt</option>
+<option value="Eastern">Eastern</option>
+<option value="Luapula">Luapula</option>
+<option value="Lusaka">Lusaka</option>
+<option value="Muchinga">Muchinga</option>
+<option value="Northern">Northern</option>
+<option value="North-Western">North-Western</option>
+<option value="Southern">Southern</option>
+<option value="Western">Western</option>
+</select>
+
+      <small class="form-label text-secondary" >What are your key strengths? Select your skills from the list below.</small>
+      <br>
+      
+
+      <div class="multiselect-container">
+        <div class="multiselect-dropdown" onclick="toggleDropdown('skillsDropdown')">
+            <span style="color: black; font-weight: bold;" id="selectedSkills">Select your skills</span>
+            <div class="dropdown-arrow">&#9662;</div>
+        </div>
+        <div id="skillsDropdown" class="dropdown-list">
+            <!-- IT and Software Development -->
+          <h3 style="text-align: center;">IT and Software Development</h3>
+        <label><input type="checkbox" value="Programming (Python, Java, C++, etc.)"> Programming (Python, Java, C++, etc.)</label>
+        <label><input type="checkbox" value="Web Development (HTML, CSS, JavaScript)"> Web Development (HTML, CSS, JavaScript)</label>
+        <label><input type="checkbox" value="Database Management (SQL, MongoDB)"> Database Management (SQL, MongoDB)</label>
+        <label><input type="checkbox" value="Software Development Life Cycle (SDLC)"> Software Development Life Cycle (SDLC)</label>
+        <label><input type="checkbox" value="Cybersecurity"> Cybersecurity</label>
+        <label><input type="checkbox" value="Network Administration"> Network Administration</label>
+        <label><input type="checkbox" value="Cloud Computing (AWS, Azure, Google Cloud)"> Cloud Computing (AWS, Azure, Google Cloud)</label>
+        <label><input type="checkbox" value="Data Analysis"> Data Analysis</label>
+        <label><input type="checkbox" value="Artificial Intelligence (AI) & Machine Learning (ML)"> Artificial Intelligence (AI) & Machine Learning (ML)</label>
+        <label><input type="checkbox" value="App Development"> App Development</label>
+        <label><input type="checkbox" value="Blockchain Development"> Blockchain Development</label>
+        <label><input type="checkbox" value="UX/UI Design"> UX/UI Design</label>
+        <label><input type="checkbox" value="IT Support & Troubleshooting"> IT Support & Troubleshooting</label>
+        <br>
+
+        <!-- Marketing and Sales -->
+         <h3 style="text-align: center;">Marketing and Sales</h3>
+
+        <label><input type="checkbox" value="Digital Marketing"> Digital Marketing</label>
+        <label><input type="checkbox" value="Content Marketing"> Content Marketing</label>
+        <label><input type="checkbox" value="SEO/SEM"> SEO/SEM</label>
+        <label><input type="checkbox" value="Social Media Management"> Social Media Management</label>
+        <label><input type="checkbox" value="Sales Strategy"> Sales Strategy</label>
+        <label><input type="checkbox" value="Copywriting"> Copywriting</label>
+        <label><input type="checkbox" value="Public Relations (PR)"> Public Relations (PR)</label>
+        <label><input type="checkbox" value="Brand Management"> Brand Management</label>
+        <label><input type="checkbox" value="Affiliate Marketing"> Affiliate Marketing</label>
+        <label><input type="checkbox" value="Market Research"> Market Research</label>
+        <label><input type="checkbox" value="Customer Relationship Management (CRM)"> Customer Relationship Management (CRM)</label>
+        <label><input type="checkbox" value="Lead Generation"> Lead Generation</label>
+        <label><input type="checkbox" value="Email Marketing"> Email Marketing</label>
+        <label><input type="checkbox" value="Negotiation Skills"> Negotiation Skills</label>
+        <label><input type="checkbox" value="Product Positioning"> Product Positioning</label>
+        <br>
+
+        <!-- Human Resources and Management -->
+        <h3 style="text-align: center;">Human Resources and Management</h3>
+        <label><input type="checkbox" value="Recruitment & Talent Acquisition"> Recruitment & Talent Acquisition</label>
+        <label><input type="checkbox" value="Performance Management"> Performance Management</label>
+        <label><input type="checkbox" value="Employee Relations"> Employee Relations</label>
+        <label><input type="checkbox" value="Training & Development"> Training & Development</label>
+        <label><input type="checkbox" value="Conflict Resolution"> Conflict Resolution</label>
+        <label><input type="checkbox" value="Payroll Management"> Payroll Management</label>
+        <label><input type="checkbox" value="Compensation & Benefits"> Compensation & Benefits</label>
+        <label><input type="checkbox" value="Leadership & Team Management"> Leadership & Team Management</label>
+        <label><input type="checkbox" value="Organizational Development"> Organizational Development</label>
+        <label><input type="checkbox" value="Labor Law Compliance"> Labor Law Compliance</label>
+        <label><input type="checkbox" value="Diversity and Inclusion"> Diversity and Inclusion</label>
+        <label><input type="checkbox" value="Change Management"> Change Management</label>
+        <label><input type="checkbox" value="Coaching & Mentoring"> Coaching & Mentoring</label>
+        <br>
+
+        <!-- Finance and Accounting -->
+        <h3 style="text-align: center;">Finance and Accounting</h3>
+        <label><input type="checkbox" value="Financial Reporting"> Financial Reporting</label>
+        <label><input type="checkbox" value="Budgeting & Forecasting"> Budgeting & Forecasting</label>
+        <label><input type="checkbox" value="Taxation & Compliance"> Taxation & Compliance</label>
+        <label><input type="checkbox" value="Auditing"> Auditing</label>
+        <label><input type="checkbox" value="Risk Management"> Risk Management</label>
+        <label><input type="checkbox" value="Investment Management"> Investment Management</label>
+        <label><input type="checkbox" value="Financial Analysis"> Financial Analysis</label>
+        <label><input type="checkbox" value="Payroll Processing"> Payroll Processing</label>
+        <label><input type="checkbox" value="Bookkeeping"> Bookkeeping</label>
+        <label><input type="checkbox" value="Cost Control"> Cost Control</label>
+        <label><input type="checkbox" value="Financial Modeling"> Financial Modeling</label>
+        <label><input type="checkbox" value="Mergers & Acquisitions"> Mergers & Acquisitions</label>
+        <label><input type="checkbox" value="Cash Flow Management"> Cash Flow Management</label>
+        <br>
+
+        <!-- Engineering and Technical Skills -->
+        <h3 style="text-align: center;">Engineering and Technical Skills</h3>
+        <label><input type="checkbox" value="CAD Design"> CAD Design</label>
+        <label><input type="checkbox" value="Mechanical Engineering"> Mechanical Engineering</label>
+        <label><input type="checkbox" value="Electrical Engineering"> Electrical Engineering</label>
+        <label><input type="checkbox" value="Civil Engineering"> Civil Engineering</label>
+        <label><input type="checkbox" value="Process Engineering"> Process Engineering</label>
+        <label><input type="checkbox" value="Quality Control"> Quality Control</label>
+        <label><input type="checkbox" value="Technical Writing"> Technical Writing</label>
+        <label><input type="checkbox" value="Project Management (PMP, Agile, etc.)"> Project Management (PMP, Agile, etc.)</label>
+        <label><input type="checkbox" value="Manufacturing Processes"> Manufacturing Processes</label>
+        <label><input type="checkbox" value="Robotics"> Robotics</label>
+        <label><input type="checkbox" value="Structural Analysis"> Structural Analysis</label>
+        <label><input type="checkbox" value="Environmental Impact Assessment"> Environmental Impact Assessment</label>
+        <label><input type="checkbox" value="Lean Manufacturing"> Lean Manufacturing</label>
+        <label><input type="checkbox" value="Product Design & Development"> Product Design & Development</label>
+        <br>
+
+        <!-- Creative Arts and Design -->
+        <h3 style="text-align: center;">Creative Arts and Design</h3>
+        <label><input type="checkbox" value="Graphic Design"> Graphic Design</label>
+        <label><input type="checkbox" value="Video Editing"> Video Editing</label>
+        <label><input type="checkbox" value="Photography"> Photography</label>
+        <label><input type="checkbox" value="Illustration"> Illustration</label>
+        <label><input type="checkbox" value="Animation (2D/3D)"> Animation (2D/3D)</label>
+        <label><input type="checkbox" value="Music Production"> Music Production</label>
+        <label><input type="checkbox" value="Fashion Design"> Fashion Design</label>
+        <label><input type="checkbox" value="Interior Design"> Interior Design</label>
+        <label><input type="checkbox" value="Writing & Editing"> Writing & Editing</label>
+        <label><input type="checkbox" value="Public Speaking & Presentation"> Public Speaking & Presentation</label>
+        <label><input type="checkbox" value="Storytelling"> Storytelling</label>
+        <label><input type="checkbox" value="Event Planning"> Event Planning</label>
+        <label><input type="checkbox" value="Creative Problem Solving"> Creative Problem Solving</label>
+        <label><input type="checkbox" value="Acting & Performing"> Acting & Performing</label>
+        <br>
+
+        <!-- Healthcare and Medical -->
+        <h3 style="text-align: center;">Healthcare and Medical</h3>
+        <label><input type="checkbox" value="Clinical Research"> Clinical Research</label>
+        <label><input type="checkbox" value="Medical Coding"> Medical Coding</label>
+        <label><input type="checkbox" value="Patient Care"> Patient Care</label>
+        <label><input type="checkbox" value="Diagnostics"> Diagnostics</label>
+        <label><input type="checkbox" value="Surgical Assistance"> Surgical Assistance</label>
+        <label><input type="checkbox" value="Pharmacy Management"> Pharmacy Management</label>
+        <label><input type="checkbox" value="Public Health Management"> Public Health Management</label>
+        <label><input type="checkbox" value="Nursing Skills"> Nursing Skills</label>
+        <label><input type="checkbox" value="Physiotherapy"> Physiotherapy</label>
+        <label><input type="checkbox" value="Emergency Medical Services (EMS)"> Emergency Medical Services (EMS)</label>
+        <label><input type="checkbox" value="Medical Equipment Operation"> Medical Equipment Operation</label>
+        <label><input type="checkbox" value="Telemedicine"> Telemedicine</label>
+        <label><input type="checkbox" value="Mental Health Counseling"> Mental Health Counseling</label>
+        <br>
+
+        <!-- Education and Training -->
+        <h3 style="text-align: center;">Education and Training</h3>
+        <label><input type="checkbox" value="Curriculum Design"> Curriculum Design</label>
+        <label><input type="checkbox" value="Classroom Management"> Classroom Management</label>
+        <label><input type="checkbox" value="Online Teaching & E-Learning"> Online Teaching & E-Learning</label>
+        <label><input type="checkbox" value="Lesson Planning"> Lesson Planning</label>
+        <label><input type="checkbox" value="Educational Leadership"> Educational Leadership</label>
+        <label><input type="checkbox" value="Child Development"> Child Development</label>
+        <label><input type="checkbox" value="Special Education"> Special Education</label>
+        <label><input type="checkbox" value="Assessment Design"> Assessment Design</label>
+        <label><input type="checkbox" value="Teaching English as a Second Language (TESOL)"> Teaching English as a Second Language (TESOL)</label>
+        <label><input type="checkbox" value="Adult Learning Theories"> Adult Learning Theories</label>
+        <label><input type="checkbox" value="Corporate Training"> Corporate Training</label>
+        <label><input type="checkbox" value="Workshop Facilitation"> Workshop Facilitation</label>
+        <br>
+
+        <!-- Legal and Compliance -->
+        <h3 style="text-align: center;">Legal and Compliance</h3>
+        <label><input type="checkbox" value="Legal Research & Writing"> Legal Research & Writing</label>
+        <label><input type="checkbox" value="Contract Drafting & Review"> Contract Drafting & Review</label>
+        <label><input type="checkbox" value="Corporate Law"> Corporate Law</label>
+        <label><input type="checkbox" value="Intellectual Property Law"> Intellectual Property Law</label>
+        <label><input type="checkbox" value="Litigation"> Litigation</label>
+        <label><input type="checkbox" value="Mediation & Arbitration"> Mediation & Arbitration</label>
+        <label><input type="checkbox" value="Risk Compliance"> Risk Compliance</label>
+        <label><input type="checkbox" value="Legal Documentation"> Legal Documentation</label>
+        <label><input type="checkbox" value="Regulatory Compliance"> Regulatory Compliance</label>
+        <label><input type="checkbox" value="Criminal Law"> Criminal Law</label>
+        <label><input type="checkbox" value="Employment Law"> Employment Law</label>
+        <label><input type="checkbox" value="Data Protection and Privacy"> Data Protection and Privacy</label>
+        <br>
+
+        <!-- Sales and Customer Service -->
+        <h3 style="text-align: center;">Sales and Customer Service</h3>
+        <label><input type="checkbox" value="Customer Support"> Customer Support</label>
+        <label><input type="checkbox" value="Sales Pipeline Management"> Sales Pipeline Management</label>
+        <label><input type="checkbox" value="Cold Calling"> Cold Calling</label>
+        <label><input type="checkbox" value="Client Retention"> Client Retention</label>
+        <label><input type="checkbox" value="Sales Forecasting"> Sales Forecasting</label>
+        <label><input type="checkbox" value="Business Development"> Business Development</label>
+        <label><input type="checkbox" value="Complaint Resolution"> Complaint Resolution</label>
+        <label><input type="checkbox" value="Upselling/Cross-Selling"> Upselling/Cross-Selling</label>
+        <label><input type="checkbox" value="Communication Skills"> Communication Skills</label>
+        <label><input type="checkbox" value="Active Listening"> Active Listening</label>
+        <label><input type="checkbox" value="Client Relationship Management"> Client Relationship Management</label>
+        <label><input type="checkbox" value="Customer Feedback Analysis"> Customer Feedback Analysis</label>
+        <label><input type="checkbox" value="Call Center Management"> Call Center Management</label>
+        <br>
+
+        <!-- Operations and Supply Chain -->
+        <h3 style="text-align: center;">Operations and Supply Chain</h3>
+        <label><input type="checkbox" value="Inventory Management"> Inventory Management</label>
+        <label><input type="checkbox" value="Logistics Coordination"> Logistics Coordination</label>
+        <label><input type="checkbox" value="Procurement & Purchasing"> Procurement & Purchasing</label>
+        <label><input type="checkbox" value="Supply Chain Optimization"> Supply Chain Optimization</label>
+        <label><input type="checkbox" value="Vendor Management"> Vendor Management</label>
+        <label><input type="checkbox" value="Lean Six Sigma"> Lean Six Sigma</label>
+        <label><input type="checkbox" value="Warehouse Management"> Warehouse Management</label>
+        <label><input type="checkbox" value="Demand Planning"> Demand Planning</label>
+        <label><input type="checkbox" value="Fleet Management"> Fleet Management</label>
+        <label><input type="checkbox" value="Import/Export Compliance"> Import/Export Compliance</label>
+        <label><input type="checkbox" value="Quality Assurance"> Quality Assurance</label>
+        <label><input type="checkbox" value="Continuous Improvement (Kaizen)"> Continuous Improvement (Kaizen)</label>
+        <label><input type="checkbox" value="Supply Chain Risk Management"> Supply Chain Risk Management</label>
+        <br>
+
+        <!-- Project and Program Management -->
+        <h3 style="text-align: center;">Project and Program Management</h3>
+        <label><input type="checkbox" value="Project Planning"> Project Planning</label>
+        <label><input type="checkbox" value="Agile Methodologies"> Agile Methodologies</label>
+        <label><input type="checkbox" value="Resource Allocation"> Resource Allocation</label>
+        <label><input type="checkbox" value="Gantt Chart Creation"> Gantt Chart Creation</label>
+        <label><input type="checkbox" value="Risk Management"> Risk Management</label>
+        <label><input type="checkbox" value="Stakeholder Communication"> Stakeholder Communication</label>
+        <label><input type="checkbox" value="Change Management"> Change Management</label>
+        <label><input type="checkbox" value="Cost Estimation"> Cost Estimation</label>
+        <label><input type="checkbox" value="Milestone Tracking"> Milestone Tracking</label>
+        <label><input type="checkbox" value="Project Lifecycle Management"> Project Lifecycle Management</label>
+        <label><input type="checkbox" value="Team Collaboration"> Team Collaboration</label>
+        <label><input type="checkbox" value="Process Improvement"> Process Improvement</label>
+        <br>
+
+        <!-- Leadership and Strategy -->
+        <h3 style="text-align: center;">Leadership and Strategy</h3>
+        <label><input type="checkbox" value="Strategic Planning"> Strategic Planning</label>
+        <label><input type="checkbox" value="Decision Making"> Decision Making</label>
+        <label><input type="checkbox" value="Negotiation & Persuasion"> Negotiation & Persuasion</label>
+        <label><input type="checkbox" value="Conflict Management"> Conflict Management</label>
+        <label><input type="checkbox" value="Emotional Intelligence"> Emotional Intelligence</label>
+        <label><input type="checkbox" value="Team Building"> Team Building</label>
+        <label><input type="checkbox" value="Visionary Leadership"> Visionary Leadership</label>
+        <label><input type="checkbox" value="Organizational Development"> Organizational Development</label>
+        <label><input type="checkbox" value="Goal Setting & KPI Monitoring"> Goal Setting & KPI Monitoring</label>
+        <label><input type="checkbox" value="Time Management"> Time Management</label>
+        <label><input type="checkbox" value="Delegation"> Delegation</label>
+        <label><input type="checkbox" value="Crisis Management"> Crisis Management</label>
+        <br>
+
+        <!-- Freelance and Gig Economy Skills -->
+        <h3 style="text-align: center;">Freelance and Gig Economy Skills</h3>
+        <label><input type="checkbox" value="Time Management for Freelancers"> Time Management for Freelancers</label>
+        <label><input type="checkbox" value="Remote Work Collaboration"> Remote Work Collaboration</label>
+        <label><input type="checkbox" value="Online Business Tools (e.g., Upwork, Fiverr)"> Online Business Tools (e.g., Upwork, Fiverr)</label>
+        <label><input type="checkbox" value="Proposal Writing"> Proposal Writing</label>
+        <label><input type="checkbox" value="Client Communication"> Client Communication</label>
+        <label><input type="checkbox" value="Personal Branding"> Personal Branding</label>
+        <label><input type="checkbox" value="Invoicing & Payments"> Invoicing & Payments</label>
+        <label><input type="checkbox" value="Digital Portfolio Creation"> Digital Portfolio Creation</label>
+        <br>
+
+        <!-- Entrepreneurial and Business Skills -->
+        <h3 style="text-align: center;">Entrepreneurial and Business Skills</h3>
+        <label><input type="checkbox" value="Business Plan Writing"> Business Plan Writing</label>
+        <label><input type="checkbox" value="Fundraising & Investor Relations"> Fundraising & Investor Relations</label>
+        <label><input type="checkbox" value="Startup Development"> Startup Development</label>
+        <label><input type="checkbox" value="Market Analysis"> Market Analysis</label>
+        <label><input type="checkbox" value="Venture Capital Acquisition"> Venture Capital Acquisition</label>
+        <label><input type="checkbox" value="Product Development"> Product Development</label>
+        <label><input type="checkbox" value="Business Strategy"> Business Strategy</label>
+        <label><input type="checkbox" value="Networking"> Networking</label>
+        <label><input type="checkbox" value="Growth Hacking"> Growth Hacking</label>
+        <label><input type="checkbox" value="Financial Planning for Startups"> Financial Planning for Startups</label>
+        <label><input type="checkbox" value="Business Operations Management"> Business Operations Management</label>
+        <label><input type="checkbox" value="Business Analytics"> Business Analytics</label>
+        <br>
+
+        <!-- Environmental and Sustainability -->
+        <h3 style="text-align: center;">Environmental and Sustainability</h3>
+        <label><input type="checkbox" value="Environmental Impact Assessment"> Environmental Impact Assessment</label>
+        <label><input type="checkbox" value="Sustainability Consulting"> Sustainability Consulting</label>
+        <label><input type="checkbox" value="Waste Management"> Waste Management</label>
+        <label><input type="checkbox" value="Renewable Energy Systems"> Renewable Energy Systems</label>
+        <label><input type="checkbox" value="Environmental Law"> Environmental Law</label>
+        <label><input type="checkbox" value="Climate Change Mitigation"> Climate Change Mitigation</label>
+        <label><input type="checkbox" value="Green Building Practices"> Green Building Practices</label>
+        <label><input type="checkbox" value="Carbon Footprint Reduction"> Carbon Footprint Reduction</label>
+        <label><input type="checkbox" value="Corporate Social Responsibility (CSR)"> Corporate Social Responsibility (CSR)</label>
+        <br>
+
+        <!-- Arts and Entertainment -->
+        <h3 style="text-align: center;">Arts and Entertainment</h3>
+        <label><input type="checkbox" value="Scriptwriting"> Scriptwriting</label>
+        <label><input type="checkbox" value="Cinematography"> Cinematography</label>
+        <label><input type="checkbox" value="Music Composition"> Music Composition</label>
+        <label><input type="checkbox" value="Stage Performance"> Stage Performance</label>
+        <label><input type="checkbox" value="Theater Directing"> Theater Directing</label>
+        <label><input type="checkbox" value="Film Production"> Film Production</label>
+        <label><input type="checkbox" value="Sound Engineering"> Sound Engineering</label>
+        <label><input type="checkbox" value="Video Production"> Video Production</label>
+        <label><input type="checkbox" value="Game Design"> Game Design</label>
+        <label><input type="checkbox" value="Motion Graphics"> Motion Graphics</label>
+        <br>
+
+        <!-- Trades and Technical Skills -->
+        <h3 style="text-align: center;">Trades and Technical Skills</h3>
+        <label><input type="checkbox" value="Plumbing"> Plumbing</label>
+        <label><input type="checkbox" value="Electrical Installation"> Electrical Installation</label>
+        <label><input type="checkbox" value="Welding & Fabrication"> Welding & Fabrication</label>
+        <label><input type="checkbox" value="Carpentry"> Carpentry</label>
+        <label><input type="checkbox" value="Masonry"> Masonry</label>
+        <label><input type="checkbox" value="HVAC (Heating, Ventilation, Air Conditioning)"> HVAC (Heating, Ventilation, Air Conditioning)</label>
+        <label><input type="checkbox" value="Automobile Mechanics"> Automobile Mechanics</label>
+        <label><input type="checkbox" value="Appliance Repair"> Appliance Repair</label>
+        <label><input type="checkbox" value="Solar Panel Installation"> Solar Panel Installation</label>
+        <label><input type="checkbox" value="CNC Machine Operation"> CNC Machine Operation</label>
+        <br>
+
+        <!-- Hospitality and Tourism -->
+        <h3 style="text-align: center;">Hospitality and Tourism</h3>
+        <label><input type="checkbox" value="Event Management"> Event Management</label>
+        <label><input type="checkbox" value="Hospitality Management"> Hospitality Management</label>
+        <label><input type="checkbox" value="Hotel Operations"> Hotel Operations</label>
+        <label><input type="checkbox" value="Tourism Management"> Tourism Management</label>
+        <label><input type="checkbox" value="Catering Services"> Catering Services</label>
+        <label><input type="checkbox" value="Travel Planning"> Travel Planning</label>
+        <label><input type="checkbox" value="Guest Relations"> Guest Relations</label>
+        <label><input type="checkbox" value="Restaurant Management"> Restaurant Management</label>
+        <label><input type="checkbox" value="Food & Beverage Management"> Food & Beverage Management</label>
+        <label><input type="checkbox" value="Housekeeping Management"> Housekeeping Management</label>
+        <br>
+
+        <!-- Media and Communication -->
+        <h3 style="text-align: center;">Media and Communication</h3>
+        <label><input type="checkbox" value="Journalism"> Journalism</label>
+        <label><input type="checkbox" value="Media Production"> Media Production</label>
+        <label><input type="checkbox" value="Podcasting"> Podcasting</label>
+        <label><input type="checkbox" value="Public Speaking"> Public Speaking</label>
+        <label><input type="checkbox" value="Communication Strategy"> Communication Strategy</label>
+        <label><input type="checkbox" value="Content Strategy"> Content Strategy</label>
+        <label><input type="checkbox" value="Media Relations"> Media Relations</label>
+        <label><input type="checkbox" value="Speech Writing"> Speech Writing</label>
+        <br>
+
+        <!-- Construction & Architecture -->
+        <h3 style="text-align: center;">Construction & Architecture</h3>
+        <label><input type="checkbox" value="Construction Project Management"> Construction Project Management</label>
+        <label><input type="checkbox" value="Architectural Design"> Architectural Design</label>
+        <label><input type="checkbox" value="Civil Engineering Construction"> Civil Engineering Construction</label>
+        <label><input type="checkbox" value="Structural Engineering"> Structural Engineering</label>
+        <label><input type="checkbox" value="Quantity Surveying"> Quantity Surveying</label>
+        <label><input type="checkbox" value="Urban Planning"> Urban Planning</label>
+        <label><input type="checkbox" value="Building Information Modeling (BIM)"> Building Information Modeling (BIM)</label>
+        <label><input type="checkbox" value="Site Supervision"> Site Supervision</label>
+        <label><input type="checkbox" value="Health & Safety Compliance"> Health & Safety Compliance</label>
+        <br>
+
+        <!-- Soft Skills (General) -->
+        <h3 style="text-align: center;">Soft Skills (General)</h3>
+        <label><input type="checkbox" value="Critical Thinking"> Critical Thinking</label>
+        <label><input type="checkbox" value="Adaptability"> Adaptability</label>
+        <label><input type="checkbox" value="Collaboration"> Collaboration</label>
+        <label><input type="checkbox" value="Creativity"> Creativity</label>
+        <label><input type="checkbox" value="Problem Solving"> Problem Solving</label>
+        <label><input type="checkbox" value="Leadership"> Leadership</label>
+        <label><input type="checkbox" value="Public Speaking"> Public Speaking</label>
+        <label><input type="checkbox" value="Interpersonal Communication"> Interpersonal Communication</label>
+        <label><input type="checkbox" value="Emotional Intelligence (EQ)"> Emotional Intelligence (EQ)</label>
+        <label><input type="checkbox" value="Time Management"> Time Management</label>
+        <label><input type="checkbox" value="Decision Making"> Decision Making</label>
+        <label><input type="checkbox" value="Resilience"> Resilience</label>
+        <label><input type="checkbox" value="Negotiation"> Negotiation</label>
+        <label><input type="checkbox" value="Conflict Resolution"> Conflict Resolution</label>
+        <label><input type="checkbox" value="Active Learning"> Active Learning</label>
+        <br>
+
+        <!-- Customer Experience & Retail -->
+        <h3 style="text-align: center;">Customer Experience & Retail</h3>
+        <label><input type="checkbox" value="Point of Sale (POS) Systems"> Point of Sale (POS) Systems</label>
+        <label><input type="checkbox" value="Retail Merchandising"> Retail Merchandising</label>
+        <label><input type="checkbox" value="Visual Merchandising"> Visual Merchandising</label>
+        <label><input type="checkbox" value="Customer Journey Mapping"> Customer Journey Mapping</label>
+        <label><input type="checkbox" value="Retail Sales Strategies"> Retail Sales Strategies</label>
+        <label><input type="checkbox" value="Store Management"> Store Management</label>
+        <label><input type="checkbox" value="E-Commerce Management"> E-Commerce Management</label>
+        <label><input type="checkbox" value="Inventory Control"> Inventory Control</label>
+        <br>
+
+        <!-- Consulting and Advisory -->
+        <h3 style="text-align: center;">Consulting and Advisory</h3>
+        <label><input type="checkbox" value="Management Consulting"> Management Consulting</label>
+        <label><input type="checkbox" value="Financial Advisory"> Financial Advisory</label>
+        <label><input type="checkbox" value="Strategic Planning"> Strategic Planning</label>
+        <label><input type="checkbox" value="Business Process Re-engineering"> Business Process Re-engineering</label>
+        <label><input type="checkbox" value="Market Entry Strategy"> Market Entry Strategy</label>
+        <label><input type="checkbox" value="Operations Consulting"> Operations Consulting</label>
+        <label><input type="checkbox" value="Digital Transformation Consulting"> Digital Transformation Consulting</label>
+        <br>
+
+        <!-- Coaching and Mentorship -->
+        <h3 style="text-align: center;">Coaching and Mentorship</h3>
+        <label><input type="checkbox" value="Career Coaching"> Career Coaching</label>
+        <label><input type="checkbox" value="Life Coaching"> Life Coaching</label>
+        <label><input type="checkbox" value="Executive Coaching"> Executive Coaching</label>
+        <label><input type="checkbox" value="Mentorship Skills"> Mentorship Skills</label>
+        <label><input type="checkbox" value="Personal Development Training"> Personal Development Training</label>
+        <label><input type="checkbox" value="Professional Development Strategy"> Professional Development Strategy</label>
+        <label><input type="checkbox" value="Professional Development Strategy"> Wellness Coaching</label>
+        <label><input type="checkbox" value="Professional Development Strategy"> Leadership Coaching</label>
+        <br>
+
+        <!-- Entrepreneurship & Innovation -->
+        <h3 style="text-align: center;">Entrepreneurship & Innovation</h3>
+        <label><input type="checkbox" value="Business Ideation"> Business Ideation</label>
+        <label><input type="checkbox" value="Innovation Management"> Innovation Management</label>
+        <label><input type="checkbox" value="Entrepreneurship Ecosystems"> Entrepreneurship Ecosystems</label>
+        <label><input type="checkbox" value="Pitching & Presentation Skills"> Pitching & Presentation Skills</label>
+        <label><input type="checkbox" value="Business Ideation"> Business Ideation</label>
+        <label><input type="checkbox" value="MVP Development (Minimum Viable Product)"> MVP Development (Minimum Viable Product)</label>
+        <label><input type="checkbox" value="Lean Startup Methodology"> Lean Startup Methodology</label>
+        <br>
+
+        <!-- Agriculture & Farming -->
+        <h3 style="text-align: center;">Agriculture & Farming</h3>
+        <label><input type="checkbox" value="Agribusiness Management"> Agribusiness Management</label>
+        <label><input type="checkbox" value="Sustainable Farming Practices"> Sustainable Farming Practices</label>
+        <label><input type="checkbox" value="Crop Production"> Crop Production</label>
+        <label><input type="checkbox" value="Livestock Management"> Livestock Management</label>
+        <label><input type="checkbox" value="Agroforestry"> Agroforestry</label>
+        <label><input type="checkbox" value="Aquaculture"> Aquaculture</label>
+        <label><input type="checkbox" value="Organic Farming"> Organic Farming</label>
+        <label><input type="checkbox" value="Irrigation Systems"> Irrigation Systems</label>
+        <label><input type="checkbox" value="Farm Equipment Operation"> Farm Equipment Operation</label>
+        <label><input type="checkbox" value="Agricultural Policy"> Agricultural Policy</label>
+        <br>
+
+        <!-- Real Estate -->
+        <h3 style="text-align: center;">Real Estate</h3>
+        <label><input type="checkbox" value="Property Management"> Property Management</label>
+        <label><input type="checkbox" value="Real Estate Investment"> Real Estate Investment</label>
+        <label><input type="checkbox" value="Property Valuation"> Property Valuation</label>
+        <label><input type="checkbox" value="Real Estate Law"> Real Estate Law</label>
+        <label><input type="checkbox" value="Real Estate Marketing"> Real Estate Marketing</label>
+        <label><input type="checkbox" value="Urban Development"> Urban Development</label>
+        <label><input type="checkbox" value="Leasing & Tenant Management"> Leasing & Tenant Management</label>
+        
+        <!-- Add more checkboxes -->
+    </div>
+      </div>
+
+
+<br>
+      <small class="form-label text-secondary" >Additional Skills</small>
+      <input type="text" id="otherSkill" placeholder="Add additional skills" class="contact-in-input" name="additional_skills">
+
+
+      <small class="form-label text-secondary" >Work Experience</small>
+<p class="text-secondary">Showcase your professional journey. Add your current job and up to three past positions.</p>
+
+      <small class="form-label text-secondary">Current Job Title</small>
+      <input type="text" id="currentJobTitle" placeholder="E.g., Marketing Manager" class="contact-in-input" name="current_job_title">
+
+      <small class="form-label text-secondary" >Company Name</small>
+      <input type="text" id="currentCompanyName" placeholder="Name of your current employer" class="contact-in-input" name="current_company_name">
+
+      
+      <small class="form-label text-secondary" >Education and Certifications</small>
+<p class="text-secondary">Highlight your academic achievements.</p>
+
+<small class="form-label text-secondary" >Highest Degree Achieved</small>
+<select  id="degreeSelect" class="contact-in-input" name="highest_degree">
+  <option value="" disabled selected>Select your highest degree</option>
+  <option value="Bachelor’s">Bachelor’s</option>
+  <option value="Master’s">Master’s</option>
+  <option value="Diploma">Diploma</option>
+  <option value="Certificate">Certificate</option>
+  <option value="PhD">PhD</option>
+  <option value="Other">Other</option>
+</select>
+
+<small class="form-label text-secondary" >Institution Name</small>
+<input type="text" id="institutionName" placeholder="Where did you study?" class="contact-in-input" name="institution_name">
+
+
+<small class="form-label text-secondary" >Portfolio and Projects (Optional)</small>
+<p class="text-secondary">Do you have projects, portfolios, or work samples to showcase? (For creatives, freelancers, and consultants)</p>
+
+<small class="form-label text-secondary" >Upload Portfolio Files</small>
+<input type="file" id="portfolioFiles" class="contact-in-input" name="portfolio_files" accept=".pdf,.doc,.docx,.jpg,.png">
+
+<small class="form-label text-secondary" >Project Links</small>
+<input type="text" id="projectLinks" placeholder="Add links to your portfolio or online profile (e.g., personal website, Behance)" class="contact-in-input" name="project_links">
+
+<small class="form-label text-secondary" >Services Offered (For Freelancers/Consultants/Entrepreneurs)</small>
+<p class="text-secondary">What services do you offer? (For those offering professional services)</p>
+
+<small class="form-label text-secondary" >Services Provided</small>
+<textarea id="servicesProvided" placeholder="E.g., Consulting, Graphic Design, Web Development" class="contact-in-input" name="services_provided"></textarea>
+
+<small class="form-label text-secondary" >LinkedIn Profile</small>
+<input type="url" id="linkedInProfile" placeholder="Enter your LinkedIn profile URL" class="contact-in-input" name="linkedin_profile">
+<a id="linkedInLink" href="#" target="_blank" style="display:none;">Connect on LinkedIn</a>
+
+<small class="form-label text-secondary" >Other Platforms</small>
+<textarea id="otherPlatforms" placeholder="Add other relevant profiles (Instagram, Twitter, etc.)" class="contact-in-input" name="other_social_profiles"></textarea>
+
+<small class="form-label text-secondary">Create a Password</small>
+<input style="font-weight: bold;" required type="password" name="password1" placeholder="Ensure your password is secure:" class="contact-in-input">
+
+<small class="form-label text-secondary">Confirm Password</small>
+<input style="font-weight: bold;" required type="password" name="password2" placeholder="Ensure your password matches:" class="contact-in-input">
+
+<small class="form-label text-secondary">Terms and Conditions</small>
+<p>Please review our terms of service before completing your registration.</p>
+
+<div class="form-group">
+  <label class="agreement-label">
+      <input type="checkbox" id="terms-and-conditions" name="terms-and-conditions" required>
+      I agree to the <a href="#">terms & conditions</a> of Peza Job Zambia.
+  </label>
+  <br>
+  <label class="agreement-label">
+      <input type="checkbox" id="privacy-policy" name="privacy-policy" required>
+      I have read and agree to the <a href="#">privacy policy</a>.
+  </label>
+</div>
+
+<br><br>
+
+<!-- reCAPTCHA widget -->
+<div class="captcha-container">
+  <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
+</div>
+
+
+<br>
+
+<input style="font-weight: bold;" type="submit" value="Submit Your Registration" class="contact-in-btn">
+
+      
+    </form>
+    <br>
+
+    <p style="text-align: center;">Already have an account? <a href="{% url 'accounts:login_page' %}"><strong>Login</strong></a></p>
+
+                    <br>
+  </div>
+  <!-- <div class="contact-in"></div> -->
+</div>
+
+<script src="{% static 'main/js/intlTelInput.js' %}"></script>
+<script>
+  const linkedInInput = document.getElementById('linkedInProfile');
+  const linkedInLink = document.getElementById('linkedInLink');
+
+  linkedInInput.addEventListener('input', function() {
+    const url = linkedInInput.value;
+    if (url && url.startsWith("https://www.linkedin.com/in/")) {
+      const profileID = url.split("/in/")[1];  // Extract the profile ID
+      linkedInLink.style.display = 'inline';
+      linkedInLink.href = `https://www.linkedin.com/messaging/compose/?to=${profileID}`;
+    } else {
+      linkedInLink.style.display = 'none';
+    }
+  });
+</script>
+<script>
+  var input = document.querySelector("#phone");
+  window.intlTelInput(input, {});
+</script>
+
+
+<!-- JavaScript -->
+<script>
+  function toggleDropdown(dropdownId) {
+      const dropdown = document.getElementById(dropdownId);
+      dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+  }
+  
+  document.addEventListener('click', function (event) {
+      const professionDropdown = document.getElementById('professionDropdown');
+      const skillsDropdown = document.getElementById('skillsDropdown');
+      const professionMultiselect = document.querySelector('.multiselect-container .multiselect-dropdown');
+      const skillsMultiselect = document.querySelectorAll('.multiselect-container .multiselect-dropdown')[1];
+      
+      // Close dropdown only if clicking outside of the dropdown or its container
+      if (!professionMultiselect.contains(event.target) && !professionDropdown.contains(event.target)) {
+          professionDropdown.style.display = 'none';
+      }
+      if (!skillsMultiselect.contains(event.target) && !skillsDropdown.contains(event.target)) {
+          skillsDropdown.style.display = 'none';
+      }
+  });
+
+  // Handle professionals dropdown
+  const professionCheckboxes = document.querySelectorAll('#professionDropdown input[type="checkbox"]');
+  const selectedProfessionalText = document.getElementById('selectedProfessional');
+  
+  professionCheckboxes.forEach(function(checkbox) {
+      checkbox.addEventListener('change', function() {
+          const selectedProfessionals = Array.from(professionCheckboxes)
+              .filter(checkbox => checkbox.checked)
+              .map(checkbox => checkbox.value);
+          
+          selectedProfessionalText.innerText = selectedProfessionals.length > 0 
+              ? selectedProfessionals.join(', ') 
+              : 'Select your Professionals';
+      });
+  });
+
+  // Handle skills dropdown
+  const skillsCheckboxes = document.querySelectorAll('#skillsDropdown input[type="checkbox"]');
+  const selectedSkillsText = document.getElementById('selectedSkills');
+  
+  skillsCheckboxes.forEach(function(checkbox) {
+      checkbox.addEventListener('change', function() {
+          const selectedSkills = Array.from(skillsCheckboxes)
+              .filter(checkbox => checkbox.checked)
+              .map(checkbox => checkbox.value);
+          
+          selectedSkillsText.innerText = selectedSkills.length > 0 
+              ? selectedSkills.join(', ') 
+              : 'Select your skills';
+      });
+  });
+</script>
+  
+
+<div style="margin-top:100px;"><div>
+
+{% include 'footer.html' %}
+{% endblock %}
